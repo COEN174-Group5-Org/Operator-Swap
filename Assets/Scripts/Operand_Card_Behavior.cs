@@ -14,8 +14,9 @@ public class Operand_Card_Behavior : MonoBehaviour
 
     //Gameobject vars
     private GameObject main_camera;
-    private GameObject card_obj;
+    [SerializeField] private GameObject card_obj;
     private Transform card_trans;
+    private BoxCollider2D bc;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class Operand_Card_Behavior : MonoBehaviour
         main_camera = GameObject.FindWithTag("MainCamera");
         card_obj = this.gameObject.transform.GetChild(0).gameObject;
         card_trans = card_obj.transform;
+        bc = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -39,9 +41,9 @@ public class Operand_Card_Behavior : MonoBehaviour
 
         //cast ray from camera to mouse position
         RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero);
-        
-        //if above ray hit a collider then,
-        if(hit.collider != null)
+
+        //if above ray hit this collider then,
+        if(hit.collider != null && hit.collider.gameObject == this.gameObject)
         {
             //Debug.Log("Touch!");
             //set is_touched to true
