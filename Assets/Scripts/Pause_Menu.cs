@@ -10,6 +10,7 @@ public class Pause_Menu : MonoBehaviour
     // if(Pause_Menu.GameIsPaused){ ... }
 
     public GameObject pauseMenuUI;
+    public GameObject pauseButton; 
 
     // Update is called once per frame
     void Update()
@@ -28,13 +29,15 @@ public class Pause_Menu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        pauseButton.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
+        pauseButton.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true; 
     }
@@ -46,9 +49,4 @@ public class Pause_Menu : MonoBehaviour
         SceneManager.LoadScene("Title_menu");
     }
 
-    public void openSettings()
-    {
-        //Debug.Log("Open Settings...");
-        
-    }
 }
