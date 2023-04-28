@@ -5,33 +5,34 @@ using UnityEngine;
 
 public class GenerateObjective : MonoBehaviour
 {
+    int fnum = 0;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
-        var nums = new List<int>();
-        for (int i = 1; i < 10; ++i) nums.Add(i);
-        var ops = new List<char>();
-        ops.Add('+');
-        ops.Add('+');
-        ops.Add('+');
-        ops.Add('-');
-        ops.Add('-');
-        ops.Add('-');
-        ops.Add('*');
-        ops.Add('*');
-        ops.Add('*');
-        var samples = new List<int>();
-        for (int i = 0; i < 100; ++i) samples.Add(Sample(5, nums, ops));
-        samples = samples.Distinct().ToList();
-        samples.Sort();
-        Debug.Log(string.Join(" ", samples));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (false)//(++fnum % 60==0)
+        {
+            var nums = new List<int>();
+            var ops = new List<char>();
+            for (int i = 0; i < 5; ++i) nums.Add(Random.Range(1, 11));
+            nums.Sort();
+            ops.Add('+');
+            ops.Add('+');
+            ops.Add('+');
+            ops.Add('+');
+            ops.Add('*');
+            var samples = new List<int>();
+            for (int i = 0; i < 100; ++i) samples.Add(Sample(3, nums, ops));
+            samples = samples.Distinct().ToList();
+            samples.Sort();
+            Debug.Log(string.Join(", ", nums));
+            Debug.Log(string.Join(", ", samples));
+        }
     }
 
     int Sample(int nnums, List<int> nums, List<char> ops)
