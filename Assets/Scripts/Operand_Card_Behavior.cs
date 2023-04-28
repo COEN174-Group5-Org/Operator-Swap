@@ -13,6 +13,8 @@ public class Operand_Card_Behavior : MonoBehaviour
     private Vector3 mouse_pos;
 
     //Gameobject vars
+    [SerializeField] private GameObject canvas_obj;
+    [SerializeField] private Player_Values player_vals;
     private GameObject main_camera;
     [SerializeField] private GameObject card_obj;
     private Transform card_trans;
@@ -21,6 +23,8 @@ public class Operand_Card_Behavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canvas_obj = GameObject.Find("Canvas");
+        player_vals = canvas_obj.GetComponent<Player_Values>();
         is_touched = false;
         is_following = false;
         rest_position = GetComponent<Transform>().position;
@@ -43,7 +47,7 @@ public class Operand_Card_Behavior : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero);
 
         //if above ray hit this collider then,
-        if(hit.collider != null && hit.collider.gameObject == this.gameObject)
+        if(hit.collider != null && hit.collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() == false)
         {
             //Debug.Log("Touch!");
             //set is_touched to true
@@ -60,9 +64,12 @@ public class Operand_Card_Behavior : MonoBehaviour
         {
             //set is_touched to false
             is_touched = false;
+
+            //set is_holding in Player_Values script to false;
+            player_vals.Set_Is_Holding(false);
         }
 
-        if(is_touched == true && is_following == false)
+        if(is_touched == true && is_following == false && player_vals.Get_Is_Holding() == false)
         {
             //raise card
             card_trans.position = Vector2.MoveTowards(card_trans.position, transform.position + new Vector3(0,raise_dist,0), step);;
@@ -76,6 +83,9 @@ public class Operand_Card_Behavior : MonoBehaviour
         {
             //follow mouse position
             card_trans.position = new Vector3(mouse_pos.x, mouse_pos.y, 0);
+
+            //set is_holding in Player_Values script to true;
+            player_vals.Set_Is_Holding(true);
 
             //if right mouse button was pressed,
             if(Input.GetMouseButtonDown(1))

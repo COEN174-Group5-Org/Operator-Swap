@@ -8,31 +8,42 @@ public class Player_Values : MonoBehaviour
     [SerializeField] public string[] player_operators = {"+", "*"};
     [SerializeField] public int num_operands_in_deck = 3;
     [SerializeField] public int current_turn = 0;
+    [SerializeField] public bool is_holding_card = false;
 
     //Move to next turn
-    void Next_turn()
+    public void Next_turn()
     {
         current_turn++;
     }
 
     //return the current player operators
-    string[] Get_Player_Operators()
+    public string[] Get_Player_Operators()
     {
         return player_operators;
     }
 
-    void Set_Player_Operators(string[] new_ops)
+   public  void Set_Player_Operators(string[] new_ops)
     {
         player_operators = new_ops;
     }
 
-    int Get_Num_Operands()
+    public int Get_Num_Operands()
     {
         return num_operands_in_deck;
     }
 
-    void Set_Num_Operands(int new_num)
+    public void Set_Num_Operands(int new_num)
     {
         num_operands_in_deck = new_num;
+    }
+
+    public bool Get_Is_Holding()
+    {
+        return is_holding_card;
+    }
+
+    public void Set_Is_Holding(bool new_bool)
+    {
+        is_holding_card = new_bool;
     }
 }
