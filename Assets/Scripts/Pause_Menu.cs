@@ -43,7 +43,7 @@ public class Pause_Menu : MonoBehaviour
     {
         Time.timeScale = 1f;
         //Debug.Log("Loading menu...");
-        //SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Title_menu");
     }
 
     public void openSettings()
