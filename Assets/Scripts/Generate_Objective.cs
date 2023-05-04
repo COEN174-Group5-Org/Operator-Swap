@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GenerateObjective : MonoBehaviour
+public class Generate_Objective : MonoBehaviour
 {
     int fnum = 0;
     enum objType { GREATER = 0, LESSER }
@@ -22,7 +22,7 @@ public class GenerateObjective : MonoBehaviour
         }
     }
 
-    string generateObjective()
+    public string generateObjective()
     {
         var nums = new List<int>();
         for (int i = 0; i < 5; ++i) nums.Add(Random.Range(1, 11));

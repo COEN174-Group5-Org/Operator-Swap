@@ -8,7 +8,9 @@ public class objective_text : MonoBehaviour
     public GameObject objectiveTextGameObj;
     public TextMeshProUGUI objectiveObj;
 
-    //Grab objective from player_values script
+    public GameObject generateObjectiveOBJ;
+
+    //Grab objective from GenerateObjective
     string objectiveText;
     
 
@@ -16,19 +18,19 @@ public class objective_text : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Grab objective from player_values script
-        //objectiveText = player_values.getObjectiveText();
+        generateObjectiveOBJ = GameObject.Find("Canvas");
 
+        Generate_Objective oj = generateObjectiveOBJ.GetComponent<Generate_Objective>();
 
         objectiveTextGameObj = GameObject.Find("Objective Text");
         objectiveObj = objectiveTextGameObj.GetComponent<TextMeshProUGUI>();
-        objectiveObj.text = "test script - change to val from player_values";
+        objectiveObj.text = oj.generateObjective();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        objectiveObj.text = "test script - change to val from player_values";
+        //objectiveObj.text;
     }
 }
