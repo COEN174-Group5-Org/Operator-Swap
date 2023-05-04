@@ -21,7 +21,14 @@ public class Player_Values : MonoBehaviour
     {
         int total_slots = num_operands_in_deck + player_operators.Length;
         Debug.Log(total_slots);
+
+        
     }
+
+    // void Update()
+    // {
+    //     Generate_Hand();
+    // }
 
     //return the current player operators
     public string[] Get_Player_Operators()
