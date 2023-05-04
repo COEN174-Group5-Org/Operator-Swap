@@ -18,38 +18,44 @@ public class GenerateObjective : MonoBehaviour
     {
         if (++fnum % 64 == 0)
         {
-            var nums = new List<int>();
-            for (int i = 0; i < 5; ++i) nums.Add(Random.Range(1, 11));
-            nums.Sort();
-            var ops = new List<char>();
-            ops.Add('+');
-            ops.Add('+');
-            ops.Add('+');
-            ops.Add('+');
-            ops.Add('*');
-            var samples = new List<int>();
-            for (int i = 0; i < 100; ++i) samples.Add(Sample(3, nums, ops));
-            samples = samples.Distinct().ToList();
-            samples.Sort();
-            var type = (objType)Random.Range(0, 2);
-            int target;
-            string objStr;
-            if (type == objType.GREATER)
-            {
-                target = samples[samples.Count * Random.Range(90, 100) / 100];
-                target = target * Random.Range(90, 101) / 100 - 1;
-                objStr = "a number greater than " + target.ToString();
-            }
-            else
-            {
-                target = samples[samples.Count * Random.Range(0, 10) / 100];
-                target = target * Random.Range(100, 111) / 100 + 1;
-                objStr = "a number less than " + target.ToString();
-            }
-            Debug.Log(string.Join(", ", nums));
-            //Debug.Log(string.Join(", ", samples));
-            Debug.Log(objStr);
+            Debug.Log(generateObjective());
         }
+    }
+
+    string generateObjective()
+    {
+        var nums = new List<int>();
+        for (int i = 0; i < 5; ++i) nums.Add(Random.Range(1, 11));
+        nums.Sort();
+        var ops = new List<char>();
+        ops.Add('+');
+        ops.Add('+');
+        ops.Add('+');
+        ops.Add('+');
+        ops.Add('*');
+        var samples = new List<int>();
+        for (int i = 0; i < 100; ++i) samples.Add(Sample(3, nums, ops));
+        samples = samples.Distinct().ToList();
+        samples.Sort();
+        var type = (objType)Random.Range(0, 2);
+        int target;
+        string objStr;
+        if (type == objType.GREATER)
+        {
+            target = samples[samples.Count * Random.Range(90, 100) / 100];
+            target = target * Random.Range(90, 101) / 100 - 1;
+            objStr = "a number greater than " + target.ToString();
+        }
+        else
+        {
+            target = samples[samples.Count * Random.Range(0, 10) / 100];
+            target = target * Random.Range(100, 111) / 100 + 1;
+            objStr = "a number less than " + target.ToString();
+        }
+        //Debug.Log(string.Join(", ", nums));
+        //Debug.Log(string.Join(", ", samples));
+        //Debug.Log(objStr);
+        return objStr;
     }
 
     int Sample(int nnums, List<int> nums, List<char> ops)
