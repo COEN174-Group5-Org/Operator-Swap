@@ -66,9 +66,6 @@ public class Operand_Card_Behavior : MonoBehaviour
         {
             //set is_touched to false
             is_touched = false;
-
-            //set is_holding in Player_Values script to false;
-            player_vals.Set_Is_Holding(false);
         }
 
         if(is_touched == true && is_following == false && player_vals.Get_Is_Holding() == false)
@@ -97,6 +94,9 @@ public class Operand_Card_Behavior : MonoBehaviour
 
                 //reset position
                 collider_trans.position = rest_position;
+
+                //set is_holding in Player_Values script to false;
+                player_vals.Set_Is_Holding(false);
             }
         }
     }
