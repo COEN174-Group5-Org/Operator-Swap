@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 622302650}
   - component: {fileID: 622302649}
   - component: {fileID: 622302653}
+  - component: {fileID: 622302654}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -336,6 +337,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 888689609}
+--- !u!114 &622302654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622302648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66902c575dd36cd4bb3ea13df1fa75dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_operators:
+  - +
+  - '*'
+  num_operands_in_deck: 3
+  current_turn: 0
+  is_holding_card: 0
 --- !u!1 &632732524
 GameObject:
   m_ObjectHideFlags: 0
