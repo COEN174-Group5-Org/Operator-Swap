@@ -16,6 +16,13 @@ public class Player_Values : MonoBehaviour
         current_turn++;
     }
 
+    //generate a hand and setup cards in card slots
+    public void Generate_Hand()
+    {
+        int total_slots = num_operands_in_deck + player_operators.Length;
+        Debug.Log(total_slots);
+    }
+
     //return the current player operators
     public string[] Get_Player_Operators()
     {
