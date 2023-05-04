@@ -18,6 +18,7 @@ public class Operand_Card_Behavior : MonoBehaviour
     private GameObject main_camera;
     [SerializeField] private GameObject card_obj;
     private Transform card_trans;
+    private Transform collider_trans;
     private BoxCollider2D bc;
 
     // Start is called before the first frame update
@@ -31,6 +32,7 @@ public class Operand_Card_Behavior : MonoBehaviour
         main_camera = GameObject.FindWithTag("MainCamera");
         card_obj = this.gameObject.transform.GetChild(0).gameObject;
         card_trans = card_obj.transform;
+        collider_trans = gameObject.GetComponent<Transform>();
         bc = gameObject.GetComponent<BoxCollider2D>();
     }
 
@@ -82,7 +84,7 @@ public class Operand_Card_Behavior : MonoBehaviour
         else
         {
             //follow mouse position
-            card_trans.position = new Vector3(mouse_pos.x, mouse_pos.y, 0);
+            collider_trans.position = new Vector3(mouse_pos.x, mouse_pos.y, 0);
 
             //set is_holding in Player_Values script to true;
             player_vals.Set_Is_Holding(true);
@@ -94,7 +96,7 @@ public class Operand_Card_Behavior : MonoBehaviour
                 is_following = false; 
 
                 //reset position
-                card_trans.position = rest_position;
+                collider_trans.position = rest_position;
             }
         }
     }
