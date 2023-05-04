@@ -10,6 +10,11 @@ public class Player_Values : MonoBehaviour
     [SerializeField] public int current_turn = 0;
     [SerializeField] public bool is_holding_card = false;
 
+    public void Update()
+    {
+        //
+    }
+
     //Move to next turn
     public void Next_turn()
     {
