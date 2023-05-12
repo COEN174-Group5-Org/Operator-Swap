@@ -15,7 +15,6 @@ public class Operand_Card_Behavior : MonoBehaviour
     //Gameobject vars
     [SerializeField] private GameObject canvas_obj;
     [SerializeField] private Player_Values player_vals;
-    private GameObject main_camera;
     [SerializeField] private GameObject card_obj;
     private Transform card_trans;
     private Transform collider_trans;
@@ -24,16 +23,19 @@ public class Operand_Card_Behavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Setup
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
         is_touched = false;
         is_following = false;
         rest_position = GetComponent<Transform>().position;
-        main_camera = GameObject.FindWithTag("MainCamera");
         card_obj = this.gameObject.transform.GetChild(0).gameObject;
         card_trans = card_obj.transform;
         collider_trans = gameObject.GetComponent<Transform>();
         bc = gameObject.GetComponent<BoxCollider2D>();
+
+        //Set number on card here:
+        //...
     }
 
     // Update is called once per frame
@@ -86,18 +88,32 @@ public class Operand_Card_Behavior : MonoBehaviour
             //set is_holding in Player_Values script to true;
             player_vals.Set_Is_Holding(true);
 
+            //set held card to this card
+            player_vals.Set_Held_Card(gameObject);
+
+            //set held_card_type to "operand"
+            player_vals.Set_Held_Card_Type("operand");
+
             //if right mouse button was pressed,
             if(Input.GetMouseButtonDown(1))
             {
-                //set is_following to false
-                is_following = false; 
-
-                //reset position
-                collider_trans.position = rest_position;
-
-                //set is_holding in Player_Values script to false;
-                player_vals.Set_Is_Holding(false);
+                Reset_Card();
             }
         }
+    }
+
+    void Reset_Card()
+    {
+        //set is_following to false
+        is_following = false; 
+
+        //reset position
+        collider_trans.position = rest_position;
+
+        //set is_holding in Player_Values script to false;
+        player_vals.Set_Is_Holding(false);
+
+        //set held_card_type to "none"
+        player_vals.Set_Held_Card_Type("none");
     }
 }
