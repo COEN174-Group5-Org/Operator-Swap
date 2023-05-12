@@ -51,8 +51,4 @@ public class Pause_Menu : MonoBehaviour
         //Debug.Log("Open Settings...");
         
     }
-
-    public bool getGameIsPaused(){
-        return GameIsPaused;
-    }
 }
