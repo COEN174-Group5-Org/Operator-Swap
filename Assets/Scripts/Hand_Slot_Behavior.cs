@@ -42,7 +42,7 @@ public class Hand_Slot_Behavior : MonoBehaviour
             //iterate through hits...
             for(int i = 0; i < hits.Length; i++)
             {
-                //if the collider of this object was found in hits and the player is holding the correct card type and the player clicks left mouse button then...
+                //if the collider of this object was found in hits and the player is holding the correct card type...
                 if(hits[i].collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type)
                 {
                     //Debug.Log("This slot touched!");
@@ -55,6 +55,7 @@ public class Hand_Slot_Behavior : MonoBehaviour
                         //get held card's "Operand_Card_Behavior" Component
                         Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
 
+                        //Set card's rest position to this slot's position
                         operand_card_component.Set_Rest_Position(gameObject.transform.position);
 
                         //Reset Card
@@ -63,7 +64,7 @@ public class Hand_Slot_Behavior : MonoBehaviour
                         //put held_card into slot
                         //card.transform.position = gameObject.transform.position;
 
-                        Debug.Log("Slotted!");
+                        Debug.Log("Hand Slotted!");
                     }
                 }
             }

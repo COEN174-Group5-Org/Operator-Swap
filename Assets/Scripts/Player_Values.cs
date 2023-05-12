@@ -5,12 +5,26 @@ using UnityEngine;
 //Stores all the variables and functions of the current player
 public class Player_Values : MonoBehaviour
 {
-    [SerializeField] public string[] player_operators = {"+", "*"}; //stores the operators that will appear in the player's hand at the start of a turn
-    [SerializeField] public int num_operands_in_deck = 3; //stores the number of operand card that will appear in the player's hand at the start of a turn
-    [SerializeField] public int current_turn = 0; //stores the current turn of the scene
-    [SerializeField] public bool is_holding_card = false; //stores whether or not the player is holding a card
-    public GameObject held_card; //stores the GameObject representing the last held card
-    [SerializeField] public string held_card_type = "none"; //stores the type of the currently held card (should only be either "none", "operand", or "operator")
+    //player_operators stores the operators that will appear in the player's hand at the start of a turn
+    [SerializeField] public string[] player_operators = {"+", "*"}; 
+
+    //num_operands_in_deck stores the number of operand card that will appear in the player's hand at the start of a turn
+    [SerializeField] public int num_operands_in_deck = 3; 
+
+    //current_turn stores the current turn of the scene
+    [SerializeField] public int current_turn = 0; 
+
+    //is_holding_card stores whether or not the player is holding a card
+    [SerializeField] public bool is_holding_card = false; 
+
+    //held_card stores the GameObject representing the last held card
+    public GameObject held_card; 
+
+    //is_leftmouse_input_for_pickup stores true if a left mouse button press triggers a card pickup and false if it has not
+    public bool is_leftmouse_input_for_pickup; 
+
+    //held_card_type stores the type of the currently held card (should only be either "none", "operand", or "operator")
+    [SerializeField] public string held_card_type = "none";
 
     //Move to next turn
     public void Next_turn()
@@ -57,6 +71,16 @@ public class Player_Values : MonoBehaviour
     public void Set_Held_Card(GameObject new_obj)
     {
         held_card = new_obj;
+    }
+
+    public bool Get_Is_Leftmouse()
+    {
+        return is_leftmouse_input_for_pickup;
+    }
+
+    public void Set_Is_Leftmouse(bool new_bool)
+    {
+        is_leftmouse_input_for_pickup = new_bool;
     }
 
     public string Get_Held_Card_Type()
