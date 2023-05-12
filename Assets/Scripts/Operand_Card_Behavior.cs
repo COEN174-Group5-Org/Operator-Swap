@@ -102,7 +102,7 @@ public class Operand_Card_Behavior : MonoBehaviour
         }
     }
 
-    void Reset_Card()
+    public void Reset_Card()
     {
         //set is_following to false
         is_following = false; 
@@ -115,5 +115,12 @@ public class Operand_Card_Behavior : MonoBehaviour
 
         //set held_card_type to "none"
         player_vals.Set_Held_Card_Type("none");
+
+        Debug.Log("Reset Card");
+    }
+
+    public void Set_Rest_Position(Vector3 temp_pos)
+    {
+        rest_position = temp_pos;
     }
 }

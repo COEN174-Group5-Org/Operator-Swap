@@ -1395,6 +1395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ff542ef30e01b43b4f62b500a7cc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slot_type: operand
+  canvas_obj: {fileID: 0}
+  player_vals: {fileID: 0}
 --- !u!212 &1092901014
 SpriteRenderer:
   m_ObjectHideFlags: 0

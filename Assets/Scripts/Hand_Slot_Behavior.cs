@@ -49,9 +49,21 @@ public class Hand_Slot_Behavior : MonoBehaviour
                     //if left mouse button is pressed then...
                     if(Input.GetMouseButtonDown(0))
                     {
-                        //Debug.Log("Slotted!");
+                        //get held card
+                        GameObject card = player_vals.Get_Held_Card();
+
+                        //get held card's "Operand_Card_Behavior" Component
+                        Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
+
+                        operand_card_component.Set_Rest_Position(gameObject.transform.position);
+
+                        //Reset Card
+                        operand_card_component.Reset_Card();
+
                         //put held_card into slot
-                        (player_vals.Get_Held_Card()).transform.position = gameObject.transform.position;
+                        //card.transform.position = gameObject.transform.position;
+
+                        Debug.Log("Slotted!");
                     }
                 }
             }
