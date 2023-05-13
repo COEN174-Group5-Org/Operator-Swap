@@ -32,11 +32,11 @@ public class Battle_Slot_Behavior : MonoBehaviour
         //cast ray from camera to mouse position through all colliders
         RaycastHit2D[] hits = Physics2D.RaycastAll(mouse_pos, Vector2.zero);
 
-        //if above ray hit at least one thing then...
-        if(hits.Length != 0)
+        //if above ray hit at least two things then...
+        if(hits.Length >= 2)
         {
             //iterate through hits...
-            for(int i = 0; i < hits.Length; i++)
+            for(int i = 0; i < 2; i++)
             {
                 //if the collider of this object was found in hits and the player is holding the correct card type...
                 if(hits[i].collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type)
