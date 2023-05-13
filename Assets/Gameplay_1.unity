@@ -484,6 +484,7 @@ MonoBehaviour:
   current_turn: 0
   is_holding_card: 0
   held_card: {fileID: 0}
+  is_leftmouse_input_for_pickup: 0
   held_card_type: 
 --- !u!1 &632732524
 GameObject:
@@ -1670,6 +1671,10 @@ PrefabInstance:
     - target: {fileID: 2094500425444629262, guid: f150c672c3b711048910fc62eeb12e2f, type: 3}
       propertyPath: m_Name
       value: Operand Card Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094500425444629262, guid: f150c672c3b711048910fc62eeb12e2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f150c672c3b711048910fc62eeb12e2f, type: 3}
