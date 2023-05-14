@@ -12,6 +12,7 @@ public class Operator_Card_Behavior : MonoBehaviour
     [SerializeField] private float raise_dist;
     private Vector3 mouse_pos;
     [SerializeField] LayerMask mask;
+    private bool can_be_clicked = true;
 
     //Gameobject vars
     [SerializeField] private GameObject canvas_obj;
@@ -50,10 +51,15 @@ public class Operator_Card_Behavior : MonoBehaviour
         mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //cast ray from camera to mouse position
-        RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero, Mathf.Infinity, mask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(mouse_pos, Vector2.zero, Mathf.Infinity, mask);
+
+        if(hits.Length == 1)
+            can_be_clicked = true;
+        else    
+            can_be_clicked = false;
 
         //if above ray hit this collider then,
-        if(hit.collider != null && hit.collider.gameObject.transform == this.gameObject.transform && player_vals.Get_Is_Holding() == false)
+        if(hits.Length == 1 && hits[0].collider != null && hits[0].collider.gameObject.transform == this.gameObject.transform && player_vals.Get_Is_Holding() == false)
         {
             //Debug.Log("Touch!");
             //set is_touched to true
@@ -129,6 +135,11 @@ public class Operator_Card_Behavior : MonoBehaviour
     public void Set_Rest_Position(Vector3 new_pos)
     {
         rest_position = new_pos;
+    }
+    
+    public bool Get_Can_Be_Clicked()
+    {
+        return can_be_clicked;
     }
 }
 

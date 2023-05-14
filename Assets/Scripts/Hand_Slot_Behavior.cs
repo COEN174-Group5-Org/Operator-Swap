@@ -8,7 +8,7 @@ public class Hand_Slot_Behavior : MonoBehaviour
     [SerializeField] private string slot_type;
     private Vector3 mouse_pos;
     [SerializeField] LayerMask mask;
-    private bool is_slotted = true;
+    //private bool is_slotted = true;
 
     //GameObject vars
     [SerializeField] private GameObject card_prefab;
@@ -39,7 +39,7 @@ public class Hand_Slot_Behavior : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero, Mathf.Infinity, mask);
 
         //if above ray hit at least two things and the player is holding the correct card type then...
-        if(hit.collider != null && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type && !is_slotted)
+        if(hit.collider != null && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type)
         {    
             //if the collider of this object was found at index 1 of hits
             if(hit.collider.gameObject == this.gameObject)
@@ -49,7 +49,7 @@ public class Hand_Slot_Behavior : MonoBehaviour
                 if(Input.GetMouseButtonDown(0))
                 {
                     //set is_slotted to true
-                    is_slotted = true;
+                    //is_slotted = true;
 
                     //Rest Inputs
                     Input.ResetInputAxes();
@@ -62,22 +62,28 @@ public class Hand_Slot_Behavior : MonoBehaviour
                         //get held card's "Operator_Card_Behavior" Component
                         Operator_Card_Behavior operator_card_component = card.GetComponent<Operator_Card_Behavior>();
 
-                        //Set card's rest position to this slot's position
-                        operator_card_component.Set_Rest_Position(gameObject.transform.position);
+                        if(operator_card_component.Get_Can_Be_Clicked())
+                        {
+                            //Set card's rest position to this slot's position
+                            operator_card_component.Set_Rest_Position(gameObject.transform.position);
 
-                        //Reset Card
-                        operator_card_component.Reset_Card();
+                            //Reset Card
+                            operator_card_component.Reset_Card();
+                        }
                     }
                     else if(slot_type == "operand")
                     {
                         //get held card's "Operand_Card_Behavior" Component
                         Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
 
-                        //Set card's rest position to this slot's position
-                        operand_card_component.Set_Rest_Position(gameObject.transform.position);
+                        if(operand_card_component.Get_Can_Be_Clicked())
+                        {
+                            //Set card's rest position to this slot's position
+                            operand_card_component.Set_Rest_Position(gameObject.transform.position);
 
-                        //Reset Card
-                        operand_card_component.Reset_Card();
+                            //Reset Card
+                            operand_card_component.Reset_Card();
+                        }
                     }
 
                     //Debug.Log("Hand Slotted!");
