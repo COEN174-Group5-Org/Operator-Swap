@@ -7,6 +7,8 @@ public class Battle_Slot_Behavior : MonoBehaviour
     //Number vars
     [SerializeField] private string slot_type;
     private Vector3 mouse_pos;
+    [SerializeField] LayerMask mask;
+    private bool is_slotted = false;
 
     //GameObject vars
     [SerializeField] private GameObject canvas_obj;
@@ -30,18 +32,21 @@ public class Battle_Slot_Behavior : MonoBehaviour
         mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //cast ray from camera to mouse position through all colliders
-        RaycastHit2D[] hits = Physics2D.RaycastAll(mouse_pos, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero, Mathf.Infinity, mask);
 
         //if above ray hit at least two things and the player is holding the correct card type then...
-        if(hits.Length >= 2 && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type)
+        if(hit.collider != null && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type && !is_slotted)
         {
             //if the collider of this object was found at index 1 of hits 
-            if(hits[1].collider.gameObject == this.gameObject)
+            if(hit.collider.gameObject == this.gameObject)
             {
                 //Debug.Log("This slot touched!");
                 //if left mouse button is pressed then...
                 if(Input.GetMouseButtonDown(0))
                 {
+                    //set is_slotted to true
+                    is_slotted = true;
+
                     //Rest Inputs
                     Input.ResetInputAxes();
 
