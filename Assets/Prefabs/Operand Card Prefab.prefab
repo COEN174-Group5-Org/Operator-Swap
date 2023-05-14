@@ -49,7 +49,9 @@ MonoBehaviour:
   is_touched: 0
   is_following: 0
   move_speed: 25
-  raise_dist: 1
+  raise_dist: 0.5
+  canvas_obj: {fileID: 0}
+  player_vals: {fileID: 0}
   card_obj: {fileID: 0}
 --- !u!61 &2094500425444629258
 BoxCollider2D:
