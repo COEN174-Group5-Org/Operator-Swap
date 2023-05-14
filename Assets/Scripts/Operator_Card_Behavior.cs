@@ -11,6 +11,7 @@ public class Operator_Card_Behavior : MonoBehaviour
     [SerializeField] private float move_speed;
     [SerializeField] private float raise_dist;
     private Vector3 mouse_pos;
+    [SerializeField] LayerMask mask;
 
     //Gameobject vars
     [SerializeField] private GameObject canvas_obj;
@@ -24,6 +25,7 @@ public class Operator_Card_Behavior : MonoBehaviour
     void Start()
     {
         //Setup
+        mask = LayerMask.GetMask("Operator Cards");
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
         is_touched = false;
@@ -48,10 +50,10 @@ public class Operator_Card_Behavior : MonoBehaviour
         mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //cast ray from camera to mouse position
-        RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero, Mathf.Infinity, mask);
 
         //if above ray hit this collider then,
-        if(hit.collider != null && hit.collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() == false)
+        if(hit.collider != null && hit.collider.gameObject.transform == this.gameObject.transform && player_vals.Get_Is_Holding() == false)
         {
             //Debug.Log("Touch!");
             //set is_touched to true

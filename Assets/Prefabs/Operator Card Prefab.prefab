@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2173319396906354323}
   - component: {fileID: 2173319396906354324}
   - component: {fileID: 2173319396906354325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Operator Card Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2173319398689488921}
   - component: {fileID: 2173319398689488922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
