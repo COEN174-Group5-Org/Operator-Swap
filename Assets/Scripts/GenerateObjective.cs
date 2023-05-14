@@ -5,21 +5,18 @@ using UnityEngine;
 
 public class GenerateObjective : MonoBehaviour
 {
-    int fnum = 0;
+    var debug = false;
+    var fnum = 0;
     enum objType { GREATER = 0, LESSER }
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (++fnum % 64 == 0)
-        {
-            Debug.Log(generateObjective());
-        }
+        if (debug) if (++fnum % 64 == 0) Debug.Log(generateObjective());
     }
 
     string generateObjective()
@@ -52,9 +49,17 @@ public class GenerateObjective : MonoBehaviour
             target = target * Random.Range(100, 111) / 100 + 1;
             objStr = "a number less than " + target.ToString();
         }
-        //Debug.Log(string.Join(", ", nums));
-        //Debug.Log(string.Join(", ", samples));
-        //Debug.Log(objStr);
+        //Test code. If the objective cannot be verified, output debug info and alter return value.
+        var isImpossible = !(type == objType.GREATER ? samples[99] > target : samples[0] < target);
+        if (debug || isImpossible)
+        {
+            Debug.Log("Values in hand: " + string.Join(", ", nums));
+            Debug.Log("Operators in hand: " + string.Join(", ", ops));
+            Debug.Log("Sampled outputs: " + string.Join(", ", samples));
+            Debug.Log("Objective chosen: " + objStr);
+            Debug.Log(isImpossible ? "Objective impossible!" : "Objective verified.");
+            if (isImpossible) objStr = "error contact developer with logs";
+        }
         return objStr;
     }
 
