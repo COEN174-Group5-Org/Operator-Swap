@@ -11,6 +11,7 @@ public class Operator_Card_Behavior : MonoBehaviour
     [SerializeField] private float move_speed;
     [SerializeField] private float raise_dist;
     private Vector3 mouse_pos;
+    [SerializeField] LayerMask mask; 
 
     //Gameobject vars
     [SerializeField] private GameObject canvas_obj;
@@ -24,6 +25,7 @@ public class Operator_Card_Behavior : MonoBehaviour
     void Start()
     {
         //Setup
+        mask = LayerMask.GetMask("Operator Cards");
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
         is_touched = false;
@@ -48,31 +50,50 @@ public class Operator_Card_Behavior : MonoBehaviour
         mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //cast ray from camera to mouse position
-        RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(mouse_pos, Vector2.zero, 100f, mask);
 
-        //if above ray hit this collider then,
-        if(hit.collider != null && hit.collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() == false)
+
+        //iterate through hits
+        for(int i = 0; i < hits.Length; i++)
         {
-            //Debug.Log("Touch!");
-            //set is_touched to true
-            is_touched = true;
-
-            //if left mouse button was pressed, 
-            if(Input.GetMouseButtonDown(0))
-            {
-                //Rest Inputs
-                Input.ResetInputAxes();
-
-                //set is_following to true
-                is_following = true;
-
-                //Debug.Log("Pick up Card!");
+            /*******/   
+            Debug.Log(mouse_pos);
+            Debug.Log("is hit.collider null?: " + (hits[i].collider != null));
+            if(hits[i].collider != null){
+                Debug.Log("is hit.collider.gameObject correct?: " + (hits[i].collider.gameObject == this.gameObject));
+                Debug.Log("is hit.collider.gameObject.name is: " + hits[i].collider.gameObject.name + "and this.gameObject.name is: " + this.gameObject.name);
             }
-        }
-        else
-        {
-            //set is_touched to false
-            is_touched = false;
+            else
+                Debug.Log("No collider hit");
+            Debug.Log("is player holding?: " + player_vals.Get_Is_Holding());
+            /*******/ 
+
+            //if above ray hit this collider then,
+            if(hits[i].collider != null && hits[i].collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() == false)
+            {
+                Debug.Log("Touch!");
+                //set is_touched to true
+                is_touched = true;
+
+                //if left mouse button was pressed, 
+                if(Input.GetMouseButtonDown(0))
+                {
+                    //Rest Inputs
+                    Input.ResetInputAxes();
+
+                    //set is_following to true
+                    is_following = true;
+
+                    //break from for loop
+                    break;
+                    //Debug.Log("Pick up Card!");
+                }
+            }
+            else
+            {
+                //set is_touched to false
+                is_touched = false;
+            }
         }
 
         if(is_touched == true && is_following == false && player_vals.Get_Is_Holding() == false)
