@@ -60,12 +60,13 @@ public class Operand_Card_Behavior : MonoBehaviour
             //if left mouse button was pressed, 
             if(Input.GetMouseButtonDown(0))
             {
+                //Rest Inputs
+                Input.ResetInputAxes();
+
                 //set is_following to true
                 is_following = true;
 
-                //set is_leftmouse_input_for_pickup to true
-                player_vals.Set_Is_Leftmouse(true);
-                Debug.Log("Pick up Card!");
+                //Debug.Log("Pick up Card!");
             }
         }
         else
@@ -98,9 +99,6 @@ public class Operand_Card_Behavior : MonoBehaviour
             //set held_card_type to "operand"
             player_vals.Set_Held_Card_Type("operand");
 
-            //set is_leftmouse_input_for_pickup to false
-            player_vals.Set_Is_Leftmouse(false);
-
             //if right mouse button was pressed,
             if(Input.GetMouseButtonDown(1))
             {
@@ -123,7 +121,7 @@ public class Operand_Card_Behavior : MonoBehaviour
         //set held_card_type to "none"
         player_vals.Set_Held_Card_Type("none");
 
-        Debug.Log("Reset Card");
+        //Debug.Log("Reset Card");
     }
 
     public void Set_Rest_Position(Vector3 new_pos)

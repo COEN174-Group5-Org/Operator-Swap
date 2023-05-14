@@ -32,37 +32,32 @@ public class Battle_Slot_Behavior : MonoBehaviour
         //cast ray from camera to mouse position through all colliders
         RaycastHit2D[] hits = Physics2D.RaycastAll(mouse_pos, Vector2.zero);
 
-        //if above ray hit at least two things then...
-        if(hits.Length >= 2)
+        //if above ray hit at least two things and the player is holding the correct card type then...
+        if(hits.Length >= 2 && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type)
         {
-            //iterate through hits...
-            for(int i = 0; i < 2; i++)
+            //if the collider of this object was found at index 1 of hits 
+            if(hits[1].collider.gameObject == this.gameObject)
             {
-                //if the collider of this object was found in hits and the player is holding the correct card type...
-                if(hits[i].collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type)
+                //Debug.Log("This slot touched!");
+                //if left mouse button is pressed then...
+                if(Input.GetMouseButtonDown(0))
                 {
-                    //Debug.Log(player_vals.Get_Is_Holding().ToString());
-                    //Debug.Log("This slot touched!");
-                    //if left mouse button is pressed then...
-                    if(Input.GetMouseButtonDown(0) && player_vals.Get_Is_Leftmouse() == false)
-                    {
-                        //get held card
-                        GameObject card = player_vals.Get_Held_Card();
+                    //Rest Inputs
+                    Input.ResetInputAxes();
 
-                        //get held card's "Operand_Card_Behavior" Component
-                        Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
+                    //get held card
+                    GameObject card = player_vals.Get_Held_Card();
 
-                        //Set card's rest position to this slot's position
-                        operand_card_component.Set_Rest_Position(gameObject.transform.position);
+                    //get held card's "Operand_Card_Behavior" Component
+                    Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
 
-                        //Reset Card
-                        operand_card_component.Reset_Card();
+                    //Set card's rest position to this slot's position
+                    operand_card_component.Set_Rest_Position(gameObject.transform.position);
 
-                        //put held_card into slot
-                        //card.transform.position = gameObject.transform.position;
+                    //Reset Card
+                    operand_card_component.Reset_Card();
 
-                        Debug.Log("Battle Slotted!");
-                    }
+                    //Debug.Log("Battle Slotted!");
                 }
             }
         }

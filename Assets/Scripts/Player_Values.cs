@@ -20,9 +20,6 @@ public class Player_Values : MonoBehaviour
     //held_card stores the GameObject representing the last held card
     public GameObject held_card; 
 
-    //is_leftmouse_input_for_pickup stores true if a left mouse button press triggers a card pickup and false if it has not
-    public bool is_leftmouse_input_for_pickup; 
-
     //held_card_type stores the type of the currently held card (should only be either "none", "operand", or "operator")
     [SerializeField] public string held_card_type = "none";
 
@@ -71,16 +68,6 @@ public class Player_Values : MonoBehaviour
     public void Set_Held_Card(GameObject new_obj)
     {
         held_card = new_obj;
-    }
-
-    public bool Get_Is_Leftmouse()
-    {
-        return is_leftmouse_input_for_pickup;
-    }
-
-    public void Set_Is_Leftmouse(bool new_bool)
-    {
-        is_leftmouse_input_for_pickup = new_bool;
     }
 
     public string Get_Held_Card_Type()
