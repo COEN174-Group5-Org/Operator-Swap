@@ -48,14 +48,28 @@ public class Battle_Slot_Behavior : MonoBehaviour
                     //get held card
                     GameObject card = player_vals.Get_Held_Card();
 
-                    //get held card's "Operand_Card_Behavior" Component
-                    Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
+                    if(slot_type == "operator")
+                    {
+                        //get held card's "Operator_Card_Behavior" Component
+                        Operator_Card_Behavior operator_card_component = card.GetComponent<Operator_Card_Behavior>();
 
-                    //Set card's rest position to this slot's position
-                    operand_card_component.Set_Rest_Position(gameObject.transform.position);
+                        //Set card's rest position to this slot's position
+                        operator_card_component.Set_Rest_Position(gameObject.transform.position);
 
-                    //Reset Card
-                    operand_card_component.Reset_Card();
+                        //Reset Card
+                        operator_card_component.Reset_Card();
+                    }
+                    else if(slot_type == "operand")
+                    {
+                        //get held card's "Operand_Card_Behavior" Component
+                        Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
+
+                        //Set card's rest position to this slot's position
+                        operand_card_component.Set_Rest_Position(gameObject.transform.position);
+
+                        //Reset Card
+                        operand_card_component.Reset_Card();
+                    }
 
                     //Debug.Log("Battle Slotted!");
                 }
