@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Operand_Card_Behavior : MonoBehaviour
+public class Operator_Card_Behavior : MonoBehaviour
 {
     //Numbers vars
     private Vector3 rest_position; 
@@ -26,7 +26,7 @@ public class Operand_Card_Behavior : MonoBehaviour
     void Start()
     {
         //Setup
-        mask = LayerMask.GetMask("Operand Cards");
+        mask = LayerMask.GetMask("Operator Cards");
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
         is_touched = false;
@@ -37,7 +37,7 @@ public class Operand_Card_Behavior : MonoBehaviour
         collider_trans = gameObject.GetComponent<Transform>();
         bc = gameObject.GetComponent<BoxCollider2D>();
 
-        //Set number on card here:
+        //Set operator on card here:
         //...
     }
 
@@ -59,7 +59,7 @@ public class Operand_Card_Behavior : MonoBehaviour
             can_be_clicked = false;
 
         //if above ray hit this collider then,
-        if(can_be_clicked && hits[0].collider != null && hits[0].collider.gameObject == this.gameObject && player_vals.Get_Is_Holding() == false)
+        if(hits.Length == 1 && hits[0].collider != null && hits[0].collider.gameObject.transform == this.gameObject.transform && player_vals.Get_Is_Holding() == false)
         {
             //Debug.Log("Touch!");
             //set is_touched to true
@@ -104,8 +104,8 @@ public class Operand_Card_Behavior : MonoBehaviour
             //set held card to this card
             player_vals.Set_Held_Card(gameObject);
 
-            //set held_card_type to "operand"
-            player_vals.Set_Held_Card_Type("operand");
+            //set held_card_type to "operator"
+            player_vals.Set_Held_Card_Type("operator");
 
             //if right mouse button was pressed,
             if(Input.GetMouseButtonDown(1))
@@ -136,9 +136,10 @@ public class Operand_Card_Behavior : MonoBehaviour
     {
         rest_position = new_pos;
     }
-
+    
     public bool Get_Can_Be_Clicked()
     {
         return can_be_clicked;
     }
 }
+
