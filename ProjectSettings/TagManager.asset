@@ -11,10 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Operator Cards
+  - Operand Cards
+  - Operator Slots
+  - Operand Slots
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: text
+    uniqueID: 945691043
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
