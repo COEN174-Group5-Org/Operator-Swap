@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GenerateObjective : MonoBehaviour
 {
-    var debug = false;
-    var fnum = 0;
+    bool debug = true;
+    int fnum = 0;
     enum objType { GREATER = 0, LESSER }
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class GenerateObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (debug) if (++fnum % 64 == 0) Debug.Log(generateObjective());
+        if (debug) if (++fnum % 64 == 0) generateObjective();
     }
 
     string generateObjective()
@@ -50,7 +50,7 @@ public class GenerateObjective : MonoBehaviour
             objStr = "a number less than " + target.ToString();
         }
         //Test code. If the objective cannot be verified, output debug info and alter return value.
-        var isImpossible = !(type == objType.GREATER ? samples[99] > target : samples[0] < target);
+        var isImpossible = !(type == objType.GREATER ? samples.Last() > target : samples.First() < target);
         if (debug || isImpossible)
         {
             Debug.Log("Values in hand: " + string.Join(", ", nums));
