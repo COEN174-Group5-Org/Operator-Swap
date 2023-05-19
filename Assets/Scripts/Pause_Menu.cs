@@ -17,6 +17,8 @@ public class Pause_Menu : MonoBehaviour
     public GameObject successScreenUI;
     public GameObject defeatScreenUI;
 
+    public Player_Values pl;
+
     // Update is called once per frame
     void Update()
     {
@@ -34,12 +36,17 @@ public class Pause_Menu : MonoBehaviour
         }
     }
 
+    void Start(){
+        pl = GameObject.Find("Canvas").GetComponent<Player_Values>();
+    }
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
         pauseButton.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        pl.Set_Is_Paused(false);
     }
 
     public void Pause()
@@ -48,6 +55,7 @@ public class Pause_Menu : MonoBehaviour
         pauseButton.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true; 
+        pl.Set_Is_Paused(true);
     }
 
     public void LoadMenu()

@@ -23,6 +23,8 @@ public class Player_Values : MonoBehaviour
     //held_card_type stores the type of the currently held card (should only be either "none", "operand", or "operator")
     [SerializeField] public string held_card_type = "none";
 
+    private bool is_paused = false; 
+
     //Move to next turn
     public void Next_turn()
     {
@@ -79,4 +81,15 @@ public class Player_Values : MonoBehaviour
     {
         held_card_type = new_string;
     }
+
+    public bool Get_Is_Paused()
+    {
+        return is_paused;     
+    }
+
+    public void Set_Is_Paused(bool noow)
+    {
+        is_paused = noow;     
+    }
+
 }

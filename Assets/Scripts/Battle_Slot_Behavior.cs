@@ -28,6 +28,9 @@ public class Battle_Slot_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player_vals.Get_Is_Paused())
+            return;
+
         //setup mouse_pos
         mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
