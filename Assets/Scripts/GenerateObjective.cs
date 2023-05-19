@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GenerateObjective : MonoBehaviour
 {
-    bool debug = true;
-    int fnum = 0;
+    private bool debug = false;
+    private int fnum = 0;
     enum objType { GREATER = 0, LESSER }
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class GenerateObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (debug) if (++fnum % 64 == 0) generateObjective();
+        //if (debug) if (++fnum % 64 == 0) generateObjective();
     }
 
     string generateObjective()
