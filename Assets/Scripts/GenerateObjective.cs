@@ -16,20 +16,22 @@ public class GenerateObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (debug) if (++fnum % 64 == 0) generateObjective();
+        //if (debug) if (++fnum % 64 == 0) randomObjective();
     }
 
-    string generateObjective()
+    string randomObjective()
     {
         var nums = new List<int>();
         for (int i = 0; i < 5; ++i) nums.Add(Random.Range(1, 11));
-        nums.Sort();
         var ops = new List<char>();
-        ops.Add('+');
-        ops.Add('+');
-        ops.Add('+');
-        ops.Add('+');
-        ops.Add('*');
+        for (int i = 0; i < 4; ++i) ops.Add(Random.Range(0, 2) == 0 ? '+' : '*');
+        return generateObjective(nums, ops);
+    }
+
+    string generateObjective(List<int> nums, List<char> ops)
+    {
+        nums.Sort();
+        ops.Sort();
         var samples = new List<int>();
         for (int i = 0; i < 100; ++i) samples.Add(Sample(3, nums, ops));
         samples = samples.Distinct().ToList();
