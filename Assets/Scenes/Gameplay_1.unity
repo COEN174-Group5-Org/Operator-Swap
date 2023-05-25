@@ -338,9 +338,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 888689609}
-  pauseButton: {fileID: 0}
+  pauseButton: {fileID: 2020741178}
   successScreenUI: {fileID: 0}
   defeatScreenUI: {fileID: 0}
+  pl: {fileID: 0}
 --- !u!114 &622302654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,7 +1659,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 622302653}
         m_TargetAssemblyTypeName: Pause_Menu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1724,7 +1725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -362, y: 215}
+  m_AnchoredPosition: {x: -274, y: 168}
   m_SizeDelta: {x: 132.1425, y: 45.3002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2082424641
