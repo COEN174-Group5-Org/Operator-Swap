@@ -50,9 +50,17 @@ MonoBehaviour:
   is_following: 0
   move_speed: 25
   raise_dist: 0.5
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   canvas_obj: {fileID: 0}
   player_vals: {fileID: 0}
   card_obj: {fileID: 0}
+  card_sprites:
+  - {fileID: 2017626960, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  - {fileID: -1970526352, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  - {fileID: 110758115, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  - {fileID: 1079429766, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
 --- !u!61 &2173319396906354325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -104,8 +112,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2173319398689488920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 3.99, z: 1}
+  m_LocalPosition: {x: 0, y: -0.00000010741, z: 0}
+  m_LocalScale: {x: 1, y: 1.2603412, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2173319396906354323}
@@ -152,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
+  m_Sprite: {fileID: 2017626960, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
