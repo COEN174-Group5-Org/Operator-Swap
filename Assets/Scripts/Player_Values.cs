@@ -82,7 +82,7 @@ public class Player_Values : MonoBehaviour
         battle_objects = new GameObject[n + (n - 1)];
 
         //make equation "empty"
-        battle_equation = new string[5];
+        battle_equation = new string[n + (n - 1)];
     }
 
     // public string[] Get_Player_Operators()
