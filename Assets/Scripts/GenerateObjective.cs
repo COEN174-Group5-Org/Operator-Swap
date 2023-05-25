@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum objType { GREATER = 0, LESSER }
+
 public class GenerateObjective : MonoBehaviour
 {
     private bool debug = false;
     private int fnum = 0;
-    enum objType { GREATER = 0, LESSER }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,7 @@ public class GenerateObjective : MonoBehaviour
         return;
     }
 
-    (string objStr, (objType type, int target) objToken) generateObjective(List<int> nums, List<char> ops)
+    public (string objStr, (objType type, int target) objToken) generateObjective(List<int> nums, List<char> ops)
     {
         nums.Sort();
         ops.Sort();
@@ -78,6 +80,7 @@ public class GenerateObjective : MonoBehaviour
             Debug.Log(isImpossible ? "Objective impossible!" : "Objective verified.");
             if (isImpossible) objStr = "error contact developer with logs";
         }
+
         return (objStr, (type, target));
     }
 
