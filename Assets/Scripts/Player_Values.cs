@@ -49,7 +49,7 @@ public class Player_Values : MonoBehaviour
 
     void Start()
     {
-        Generate_Hand_For_3_Operands();
+        Generate_Hand_For_n_Operands(3);
     }
 
     //Move to next turn
@@ -58,8 +58,8 @@ public class Player_Values : MonoBehaviour
         current_turn++;
     }
 
-    //generate hand for level with 3 operands
-    public void Generate_Hand_For_3_Operands()
+    //generate hand for level with n operands
+    public void Generate_Hand_For_n_Operands(int n)
     {
         //reset current turn
         current_turn = 0;
@@ -67,28 +67,22 @@ public class Player_Values : MonoBehaviour
         //reset is_holding_card
         is_holding_card = false;
 
-        //set number of operands to 3
-        num_operands_in_deck = 3;
+        //set number of operands to n
+        num_operands_in_deck = n;
 
         //set hand_operands
-        hand_operands = new int[3];
-        for(int i = 0; i < 3; i++)
-            hand_operands[i] = (int) Random.Range(1f, 9.999999f); 
+        hand_operands = new int[n];
+        for(int i = 0; i < n; i++)
+            hand_operands[i] = (int) Random.Range(1f, ((float) operand_upper_bound) + 0.99999f); 
 
         //set hand_operators
-        hand_operators = new string[2];
+        hand_operators = new string[n - 1];
 
         //reset battle objects
-        battle_objects = new GameObject[5];
+        battle_objects = new GameObject[n + (n - 1)];
 
         //make equation "empty"
-        battle_equation = new string[5] {"EMPTY","EMPTY", "EMPTY", "EMPTY", "EMPTY"};
-    }
-
-    //generate hand for level with 4 operands
-    public void Generate_Hand_For_4_Operands()
-    {
-        num_operands_in_deck = 4;
+        battle_equation = new string[5];
     }
 
     // public string[] Get_Player_Operators()

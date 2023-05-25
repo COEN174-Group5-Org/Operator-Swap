@@ -21,6 +21,7 @@ public class Operand_Card_Behavior : MonoBehaviour
     private Transform card_trans;
     private Transform collider_trans;
     private BoxCollider2D bc;
+    private int my_operand = 1;
     [SerializeField] private Sprite[] card_sprites;
     private SpriteRenderer card_spr;
 
@@ -41,8 +42,9 @@ public class Operand_Card_Behavior : MonoBehaviour
         card_spr = card_obj.GetComponent<SpriteRenderer>();
 
         //Set number on card here:
-        int i = (int) Random.Range(0f, 8f);
-        card_spr.sprite = card_sprites[i];
+        //card_spr.sprite = card_sprites[my_operand - 1];
+        // int i = (int) Random.Range(0f, 8f);
+        // card_spr.sprite = card_sprites[i];
     }
 
     // Update is called once per frame
@@ -144,5 +146,12 @@ public class Operand_Card_Behavior : MonoBehaviour
     public bool Get_Can_Be_Clicked()
     {
         return can_be_clicked;
+    }
+
+    public void Set_My_Operand(int new_op)
+    {
+        my_operand = new_op;
+
+        card_spr.sprite = card_sprites[my_operand - 1];
     }
 }
