@@ -359,11 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66902c575dd36cd4bb3ea13df1fa75dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num_operands_in_deck: 3
-  current_turn: 0
-  is_holding_card: 0
-  held_card: {fileID: 0}
-  held_card_type: 
+  operand_upper_bound: 9
   hand_operands: 
   hand_operand_objs:
   - {fileID: 427207506}

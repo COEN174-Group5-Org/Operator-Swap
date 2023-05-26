@@ -9,22 +9,22 @@ public class Player_Values : MonoBehaviour
     //[SerializeField] public string[] player_operators; 
 
     //operand_upper_bound stores the upper bound of the operand range and is changed by the selected difficulty
-    private int operand_upper_bound;
+    [SerializeField] private int operand_upper_bound;
 
     //num_operands_in_deck stores the number of operand card that will appear in the player's hand at the start of a turn
-    public int num_operands_in_deck; 
+    private int num_operands_in_deck; 
 
     //current_turn stores the current turn of the scene
-    public int current_turn = 0; 
+    private int current_turn = 0; 
 
     //is_holding_card stores whether or not the player is holding a card
-    public bool is_holding_card = false; 
+    private bool is_holding_card = false; 
 
     //held_card stores the GameObject representing the LAST held card
-    public GameObject held_card; 
+    private GameObject held_card; 
 
     //held_card_type stores the type of the currently held card (should only be either "none", "operand", or "operator")
-    public string held_card_type = "none";
+    private string held_card_type = "none";
 
     /*** Player hand variables ***/
     //...
@@ -32,7 +32,7 @@ public class Player_Values : MonoBehaviour
 
     //hand_operand_objs ...
     //These values must be set from the inspector!
-    [SerializeField] private GameObject[] hand_operand_objs;
+    [SerializeField] private List<GameObject> hand_operand_objs;
 
     //...
     private string[] hand_operators;
@@ -53,9 +53,10 @@ public class Player_Values : MonoBehaviour
     }
 
     //Move to next turn
-    public void Next_turn()
+    public void Next_Turn()
     {
         current_turn++;
+        Generate_Hand_For_n_Operands(3);
     }
 
     //generate hand for level with n operands
@@ -70,10 +71,15 @@ public class Player_Values : MonoBehaviour
         //set number of operands to n
         num_operands_in_deck = n;
 
-        //set hand_operands
+        //set hand_operands and hand_operand_objs
         hand_operands = new int[n];
         for(int i = 0; i < n; i++)
-            hand_operands[i] = (int) Random.Range(1f, ((float) operand_upper_bound) + 0.99999f); 
+        {
+            hand_operands[i] = (int) Random.Range(1f, ((float) operand_upper_bound) + 0.99999f);
+            //BELOW IS AN ERROR!!!
+            //hand_operand_objs holds the slots rather than the cards which is wrong!
+            hand_operand_objs[i].GetComponent<Operand_Card_Behavior>().Set_My_Operand(hand_operands[i]);
+        }
 
         //set hand_operators
         hand_operators = new string[n - 1];
@@ -133,5 +139,10 @@ public class Player_Values : MonoBehaviour
     public void Set_Held_Card_Type(string new_string)
     {
         held_card_type = new_string;
+    }
+    
+    public void Set_Upper_Bound(int new_bound)
+    {
+        operand_upper_bound = new_bound;
     }
 }
