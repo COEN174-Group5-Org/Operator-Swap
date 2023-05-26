@@ -16,6 +16,7 @@ public class Pause_Menu : MonoBehaviour
     public GameObject pauseButton; 
     public GameObject successScreenUI;
     public GameObject defeatScreenUI;
+    public GameObject difficultyUI;
 
     public Player_Values pl;
 
@@ -38,6 +39,7 @@ public class Pause_Menu : MonoBehaviour
 
     void Start(){
         pl = GameObject.Find("Canvas").GetComponent<Player_Values>();
+        loadDifficultyUI();
     }
 
     public void Resume()
@@ -63,6 +65,38 @@ public class Pause_Menu : MonoBehaviour
         Time.timeScale = 1f;
         //Debug.Log("Loading menu...");
         SceneManager.LoadScene("Title_menu");
+    }
+
+    public void loadDifficultyUI()
+    {
+        //difficultyUI.SetActive(true);
+        Time.timeScale = 0f;
+        pl.Set_Is_Paused(true);
+        pauseButton.SetActive(false);
+    }
+
+    public void easy()
+    {
+        difficultyUI.SetActive(false);
+        pauseButton.SetActive(true);
+        Time.timeScale = 1f;
+        pl.Set_Is_Paused(false);
+    }
+
+    public void medium()
+    {
+        difficultyUI.SetActive(false);
+        pauseButton.SetActive(true);
+        Time.timeScale = 1f;
+        pl.Set_Is_Paused(false);
+    }
+
+    public void hard()
+    {
+        difficultyUI.SetActive(false);
+        pauseButton.SetActive(true);
+        Time.timeScale = 1f;
+        pl.Set_Is_Paused(false);
     }
 
     public void success()
