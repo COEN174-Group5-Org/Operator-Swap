@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   operand_upper_bound: 9
-  hand_operands: 
+  hand_operands: 010000000200000003000000
   hand_operand_objs:
   - {fileID: 427207506}
   - {fileID: 983054662}

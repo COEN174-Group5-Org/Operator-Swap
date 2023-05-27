@@ -72,12 +72,14 @@ public class Player_Values : MonoBehaviour
         num_operands_in_deck = n;
 
         //set hand_operands and hand_operand_objs
-        hand_operands = new List<int>(n);
+        hand_operands = new List<int>(new int[n]);
+        if(n > hand_operands.Count){
+            Debug.Log("ERROR!: nunber of cards not correct!");
+            Debug.Log("Number of cards is: " + hand_operands.Count + ". While the input number is: " + n);
+        }
         for(int i = 0; i < n; i++)
         {
             hand_operands[i] = (int) Random.Range(1f, ((float) operand_upper_bound) + 0.99999f);
-            //BELOW IS AN ERROR!!!
-            //hand_operand_objs holds the slots rather than the cards which is wrong!
             hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operands[i]);
         }
 

@@ -21,7 +21,7 @@ public class Operator_Card_Behavior : MonoBehaviour
     private Transform card_trans;
     private Transform collider_trans;
     private BoxCollider2D bc;
-    private string my_operator;
+    private char my_operator;
     [SerializeField] private Sprite[] card_sprites;
     private SpriteRenderer card_spr;
 
@@ -40,18 +40,6 @@ public class Operator_Card_Behavior : MonoBehaviour
         collider_trans = gameObject.GetComponent<Transform>();
         bc = gameObject.GetComponent<BoxCollider2D>();
         card_spr = card_obj.GetComponent<SpriteRenderer>();
-
-        //Set operator on card here:
-        // if(my_operator == "+")
-        //     card_spr.sprite = card_sprites[0];
-        // else if(my_operator == "*")
-        //     card_spr.sprite = card_sprites[1];
-        // else if(my_operator == "-")
-        //     card_spr.sprite = card_sprites[2];
-        // else if(my_operator == "/")
-        //     card_spr.sprite = card_sprites[3];
-        // int i = (int) Random.Range(0f, 4f);
-        // card_spr.sprite = card_sprites[i];
     }
 
     // Update is called once per frame
@@ -155,17 +143,17 @@ public class Operator_Card_Behavior : MonoBehaviour
         return can_be_clicked;
     }
 
-    public void Set_My_Operator(string new_op)
+    public void Set_My_Operator(char new_op)
     {
         my_operator = new_op;
 
-        if(my_operator == "+")
+        if(my_operator == '+')
             card_spr.sprite = card_sprites[0];
-        else if(my_operator == "*")
+        else if(my_operator == '*')
             card_spr.sprite = card_sprites[1];
-        else if(my_operator == "-")
+        else if(my_operator == '-')
             card_spr.sprite = card_sprites[2];
-        else if(my_operator == "/")
+        else if(my_operator == '/')
             card_spr.sprite = card_sprites[3];
     }
 }

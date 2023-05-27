@@ -24,7 +24,10 @@ public class Hand_Slot_Behavior : MonoBehaviour
 
         //create a card
         GameObject card = Instantiate(card_prefab, transform.position, Quaternion.identity);
-        //card.GetComponent<>();
+        if(slot_type == "operand")
+            card.GetComponent<Operand_Card_Behavior>().Set_My_Operand(slot_symbol);
+        else if(slot_type == "operator")
+            card.GetComponent<Operator_Card_Behavior>().Set_My_Operator((char) slot_symbol);
 
         //make sure this slot is not both an operand slot and an operator slot
         if(slot_type != "operand" && slot_type != "operator")

@@ -56,6 +56,7 @@ MonoBehaviour:
   canvas_obj: {fileID: 0}
   player_vals: {fileID: 0}
   card_obj: {fileID: 0}
+  my_operand: 1
   card_sprites:
   - {fileID: 353913345, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
   - {fileID: -386564828, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
@@ -66,6 +67,7 @@ MonoBehaviour:
   - {fileID: -1711039928, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
   - {fileID: 1860466198, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
   - {fileID: -1502899844, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  card_spr: {fileID: 2094500425884736901}
 --- !u!61 &2094500425444629258
 BoxCollider2D:
   m_ObjectHideFlags: 0
