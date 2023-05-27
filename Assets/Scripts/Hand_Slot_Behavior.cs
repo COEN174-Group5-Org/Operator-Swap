@@ -9,20 +9,22 @@ public class Hand_Slot_Behavior : MonoBehaviour
     private Vector3 mouse_pos;
     [SerializeField] LayerMask mask;
     //private bool is_slotted = true;
+    [SerializeField] private int slot_symbol;
 
     //GameObject vars
     [SerializeField] private GameObject card_prefab;
     [SerializeField] private GameObject canvas_obj;
     [SerializeField] private Player_Values player_vals;
 
-    void Awake()
+    void Start()
     {
         //setup
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
 
         //create a card
-        Instantiate(card_prefab, transform.position, Quaternion.identity);
+        GameObject card = Instantiate(card_prefab, transform.position, Quaternion.identity);
+        //card.GetComponent<>();
 
         //make sure this slot is not both an operand slot and an operator slot
         if(slot_type != "operand" && slot_type != "operator")
@@ -90,5 +92,10 @@ public class Hand_Slot_Behavior : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Set_Slot_Symbol(int symbol)
+    {
+        slot_symbol = symbol;
     }
 }

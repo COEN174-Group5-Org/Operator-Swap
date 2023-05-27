@@ -28,26 +28,26 @@ public class Player_Values : MonoBehaviour
 
     /*** Player hand variables ***/
     //...
-    [SerializeField] private int[] hand_operands;
+    [SerializeField] private List<int> hand_operands;
 
     //hand_operand_objs ...
     //These values must be set from the inspector!
     [SerializeField] private List<GameObject> hand_operand_objs;
 
     //...
-    private string[] hand_operators;
+    private List<char> hand_operators;
 
     //hand_operator_objs ...
     //These values must be set from the inspector!
-    [SerializeField] private GameObject[] hand_operator_objs;
+    [SerializeField] private List<GameObject> hand_operator_objs;
 
     //...
-    private GameObject[] battle_objects;
+    private List<GameObject> battle_objects;
 
     //...
-    private string[] battle_equation;
+    private List<char> battle_equation;
 
-    void Start()
+    void Awake()
     {
         Generate_Hand_For_n_Operands(3);
     }
@@ -72,23 +72,23 @@ public class Player_Values : MonoBehaviour
         num_operands_in_deck = n;
 
         //set hand_operands and hand_operand_objs
-        hand_operands = new int[n];
+        hand_operands = new List<int>(n);
         for(int i = 0; i < n; i++)
         {
             hand_operands[i] = (int) Random.Range(1f, ((float) operand_upper_bound) + 0.99999f);
             //BELOW IS AN ERROR!!!
             //hand_operand_objs holds the slots rather than the cards which is wrong!
-            hand_operand_objs[i].GetComponent<Operand_Card_Behavior>().Set_My_Operand(hand_operands[i]);
+            hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operands[i]);
         }
 
         //set hand_operators
-        hand_operators = new string[n - 1];
+        hand_operators = new List<char>(n - 1);
 
         //reset battle objects
-        battle_objects = new GameObject[n + (n - 1)];
+        battle_objects = new List<GameObject>(n + (n - 1));
 
         //make equation "empty"
-        battle_equation = new string[n + (n - 1)];
+        battle_equation = new List<char>(n + (n - 1));
     }
 
     // public string[] Get_Player_Operators()
