@@ -9,7 +9,6 @@ public class Battle_Slot_Behavior : MonoBehaviour
     private Vector3 mouse_pos;
     [SerializeField] private LayerMask mask;
     [SerializeField] private int my_equation_position;
-    [SerializeField] private bool is_slotted = false;
 
     //GameObject vars
     [SerializeField] private GameObject canvas_obj;
@@ -87,31 +86,35 @@ public class Battle_Slot_Behavior : MonoBehaviour
                             player_vals.Set_Battle_Nums(operand_card_component.Get_My_Operand(), my_equation_position);
                         }
                     }
-
                     //Debug.Log("Battle Slotted!");
-
                 }
             }
         }
 
         if(card != null)
         {
-            if(card.transform.position == gameObject.transform.position)
-                is_slotted = true;
-            else    
-                is_slotted = false;
+            //if card does NOT have same rest position as slot's position and the player is NOT holding a card then...
+            if(card.transform.position != gameObject.transform.position && !player_vals.Get_Is_Holding())
+            {
+                //update operand at my position in the equation
+                if(slot_type == "operand")
+                    player_vals.Set_Battle_Nums(0, my_equation_position);
+                else if(slot_type == "operator")
+                    player_vals.Set_Battle_Ops((char) 0, my_equation_position);
+            }
         }
         else
-            is_slotted = false;
+        {
+            //update operand at my position in the equation
+            if(slot_type == "operand")
+                player_vals.Set_Battle_Nums(0, my_equation_position);
+            else if(slot_type == "operator")
+                player_vals.Set_Battle_Ops((char) 0, my_equation_position);
+        }
     }
 
     public void Set_My_Position(int new_pos)
     {
         my_equation_position = new_pos;
-    }
-
-    public bool Get_Is_Slotted()
-    {
-        return is_slotted;
     }
 }
