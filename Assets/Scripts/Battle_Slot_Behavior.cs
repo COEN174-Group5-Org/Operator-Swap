@@ -8,7 +8,7 @@ public class Battle_Slot_Behavior : MonoBehaviour
     [SerializeField] private string slot_type;
     private Vector3 mouse_pos;
     [SerializeField] LayerMask mask;
-    //private bool is_slotted = false;
+    [SerializeField] int my_equation_position;
 
     //GameObject vars
     [SerializeField] private GameObject canvas_obj;
@@ -44,9 +44,6 @@ public class Battle_Slot_Behavior : MonoBehaviour
                 //if left mouse button is pressed then...
                 if(Input.GetMouseButtonDown(0))
                 {
-                    //set is_slotted to true
-                    //is_slotted = true;
-
                     //Rest Inputs
                     Input.ResetInputAxes();
 
@@ -65,6 +62,9 @@ public class Battle_Slot_Behavior : MonoBehaviour
 
                             //Reset Card
                             operator_card_component.Reset_Card();
+
+                            //update operator at my position in the equation
+                            player_vals.Set_Battle_Ops(operator_card_component.Get_My_Operator(), my_equation_position);
                         }
                     }
                     else if(slot_type == "operand")
@@ -79,6 +79,9 @@ public class Battle_Slot_Behavior : MonoBehaviour
 
                             //Reset Card
                             operand_card_component.Reset_Card();
+
+                            //update operand at my position in the equation
+                            player_vals.Set_Battle_Nums(operand_card_component.Get_My_Operand(), my_equation_position);
                         }
                     }
 
@@ -86,5 +89,10 @@ public class Battle_Slot_Behavior : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Set_My_Position(int new_pos)
+    {
+        my_equation_position = new_pos;
     }
 }

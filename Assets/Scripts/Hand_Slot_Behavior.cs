@@ -8,7 +8,6 @@ public class Hand_Slot_Behavior : MonoBehaviour
     [SerializeField] private string slot_type;
     private Vector3 mouse_pos;
     [SerializeField] LayerMask mask;
-    //private bool is_slotted = true;
     [SerializeField] private int slot_symbol;
 
     //GameObject vars

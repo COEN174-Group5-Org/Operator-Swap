@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player_Values : MonoBehaviour
 {
     //operand_upper_bound stores the upper bound of the operand range and is changed by the selected difficulty
-    [SerializeField] private int operand_upper_bound;
+    private int operand_upper_bound;
 
     //num_operands_in_deck stores the number of operand card that will appear in the player's hand at the start of a turn
     private int num_operands_in_deck; 
@@ -26,7 +26,7 @@ public class Player_Values : MonoBehaviour
 
     /*** Player hand variables ***/
     //hand_operands stores a List of all the integer operands currently in the player's hand
-    [SerializeField] private List<int> hand_operands;
+    private List<int> hand_operands;
 
     //hand_operand_objs stores a List of the operand card objects currently in the player's hand
     //These values must be set from the inspector!
@@ -46,11 +46,11 @@ public class Player_Values : MonoBehaviour
 
     //battle_nums stores 
     //if the Count of battle_objects is equal to the Count of hand_operand_objs plus the Count of hand_operator_objs then, the battle equation can be evaluated
-    private List<int> battle_nums;
+    [SerializeField] private static List<int> battle_nums;
 
     //battle_ops stores 
     //if the Count of battle_objects is equal to the Count of hand_operand_objs plus the Count of hand_operator_objs then, the battle equation can be evaluated
-    private List<char> battle_ops;
+    [SerializeField] private static List<char> battle_ops;
 
     void Awake()
     {
@@ -162,5 +162,25 @@ public class Player_Values : MonoBehaviour
     public void Set_Upper_Bound(int new_bound)
     {
         operand_upper_bound = new_bound;
+    }
+
+    public List<int> Get_Battle_Nums()
+    {
+        return battle_nums;
+    }
+
+    public void Set_Battle_Nums(int number, int index)
+    {
+        battle_nums[index] = number;
+    }
+
+    public List<char> Get_Battle_Ops()
+    {
+        return battle_ops;
+    }
+
+    public void Set_Battle_Ops(char symbol, int index)
+    {
+        battle_ops[index] = symbol;
     }
 }

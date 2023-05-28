@@ -148,4 +148,9 @@ public class Operand_Card_Behavior : MonoBehaviour
 
         card_spr.sprite = card_sprites[my_operand - 1];
     }
+
+    public int Get_My_Operand()
+    {
+        return my_operand;
+    }
 }

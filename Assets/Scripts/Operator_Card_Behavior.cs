@@ -155,5 +155,10 @@ public class Operator_Card_Behavior : MonoBehaviour
         else if(my_operator == '/')
             card_spr.sprite = card_sprites[3];
     }
+
+    public char Get_My_Operator()
+    {
+        return my_operator;
+    }
 }
 
