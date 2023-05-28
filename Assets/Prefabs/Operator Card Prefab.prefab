@@ -61,6 +61,7 @@ MonoBehaviour:
   - {fileID: -1970526352, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
   - {fileID: 110758115, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
   - {fileID: 1079429766, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  card_spr: {fileID: 2173319398689488922}
 --- !u!61 &2173319396906354325
 BoxCollider2D:
   m_ObjectHideFlags: 0

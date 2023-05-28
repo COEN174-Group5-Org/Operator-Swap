@@ -23,7 +23,7 @@ public class Operator_Card_Behavior : MonoBehaviour
     private BoxCollider2D bc;
     private char my_operator;
     [SerializeField] private Sprite[] card_sprites;
-    private SpriteRenderer card_spr;
+    [SerializeField] private SpriteRenderer card_spr; //NOTE: Do not remove [SerializeField] for this variable!
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +39,6 @@ public class Operator_Card_Behavior : MonoBehaviour
         card_trans = card_obj.transform;
         collider_trans = gameObject.GetComponent<Transform>();
         bc = gameObject.GetComponent<BoxCollider2D>();
-        card_spr = card_obj.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame

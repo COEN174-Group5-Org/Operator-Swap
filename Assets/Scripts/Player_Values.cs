@@ -5,9 +5,6 @@ using UnityEngine;
 //Stores all the variables and functions of the current player
 public class Player_Values : MonoBehaviour
 {
-    //player_operators stores the operators that will appear in the player's hand at the start of a turn
-    //[SerializeField] public string[] player_operators; 
-
     //operand_upper_bound stores the upper bound of the operand range and is changed by the selected difficulty
     [SerializeField] private int operand_upper_bound;
 
@@ -41,6 +38,7 @@ public class Player_Values : MonoBehaviour
     //These values must be set from the inspector!
     [SerializeField] private List<GameObject> hand_operator_objs;
 
+    /*** Battle Slot variables ***/
     //...
     private List<GameObject> battle_objects;
 
@@ -74,8 +72,8 @@ public class Player_Values : MonoBehaviour
         //set hand_operands and hand_operand_objs
         hand_operands = new List<int>(new int[n]);
         if(n > hand_operands.Count){
-            Debug.Log("ERROR!: nunber of cards not correct!");
-            Debug.Log("Number of cards is: " + hand_operands.Count + ". While the input number is: " + n);
+            Debug.Log("ERROR!: nunber of OPERAND cards not correct!");
+            Debug.Log("Number of OPERAND cards is: " + hand_operands.Count + ". While the input number is: " + n);
         }
         for(int i = 0; i < n; i++)
         {
@@ -84,7 +82,25 @@ public class Player_Values : MonoBehaviour
         }
 
         //set hand_operators
-        hand_operators = new List<char>(n - 1);
+        hand_operators = new List<char>(new char[n - 1]);
+        if((n - 1) > hand_operators.Count){
+            Debug.Log("ERROR!: nunber of OPERATOR cards not correct!");
+            Debug.Log("Number of cards is: " + hand_operands.Count + ". While the input number is: " + n);
+        }
+        for(int i = 0; i < (n - 1); i++)
+        {
+            if(i == 0)
+                hand_operators[i] = '+';
+            else if(i == 1)
+                hand_operators[i] = '*';
+            else if(i == 2)
+                hand_operators[i] = '-';
+            else if(i == 3)
+                hand_operators[i] = '/';
+            else
+                Debug.Log("ERROR! number of OPERATOR cards exceeds 4!");
+            hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operators[i]);
+        }
 
         //reset battle objects
         battle_objects = new List<GameObject>(n + (n - 1));
@@ -92,16 +108,6 @@ public class Player_Values : MonoBehaviour
         //make equation "empty"
         battle_equation = new List<char>(n + (n - 1));
     }
-
-    // public string[] Get_Player_Operators()
-    // {
-    //     return player_operators;
-    // }
-
-    // public  void Set_Player_Operators(string[] new_ops)
-    // {
-    //     player_operators = new_ops;
-    // }
 
     public int Get_Num_Operands()
     {
