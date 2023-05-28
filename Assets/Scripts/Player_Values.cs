@@ -23,27 +23,34 @@ public class Player_Values : MonoBehaviour
     //held_card_type stores the type of the currently held card (should only be either "none", "operand", or "operator")
     private string held_card_type = "none";
 
+
     /*** Player hand variables ***/
-    //...
+    //hand_operands stores a List of all the integer operands currently in the player's hand
     [SerializeField] private List<int> hand_operands;
 
-    //hand_operand_objs ...
+    //hand_operand_objs stores a List of the operand card objects currently in the player's hand
     //These values must be set from the inspector!
     [SerializeField] private List<GameObject> hand_operand_objs;
 
-    //...
+    //hand_operators stores a List of all the character operators currently in the player's hand
     private List<char> hand_operators;
 
-    //hand_operator_objs ...
+    //hand_operator_objs stores a List of the operator card objects currently in the player's hand
     //These values must be set from the inspector!
     [SerializeField] private List<GameObject> hand_operator_objs;
 
+
     /*** Battle Slot variables ***/
-    //...
+    //battle_objects stores a List of the operator and operand cards currently in the battle slots
     private List<GameObject> battle_objects;
 
-    //...
-    private List<char> battle_equation;
+    //battle_nums stores 
+    //if the Count of battle_objects is equal to the Count of hand_operand_objs plus the Count of hand_operator_objs then, the battle equation can be evaluated
+    private List<int> battle_nums;
+
+    //battle_ops stores 
+    //if the Count of battle_objects is equal to the Count of hand_operand_objs plus the Count of hand_operator_objs then, the battle equation can be evaluated
+    private List<char> battle_ops;
 
     void Awake()
     {
@@ -105,8 +112,11 @@ public class Player_Values : MonoBehaviour
         //reset battle objects
         battle_objects = new List<GameObject>(new GameObject[n + (n - 1)]);
 
-        //make equation "empty"
-        battle_equation = new List<char>(new char[n + (n - 1)]);
+        //reset battle_nums
+        battle_nums = new List<int>(new int[n]);
+
+        //reset battle_ops
+        battle_ops = new List<char>(new char[n - 1]);
     }
 
     public int Get_Num_Operands()
