@@ -46,13 +46,16 @@ public class Player_Values : MonoBehaviour
     //These values must be set from the inspector and must be in correct order!
     [SerializeField] private List<GameObject> battle_objects;
 
-    //battle_nums stores 
-    //if the elements of battle_nums sum to not zero and the elements of battle_ops sum to not zero then, the battle equation can be evaluated
+    //battle_nums stores the operands in the battle equation in order from left to right
+    //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
     [SerializeField] private List<int> battle_nums;
 
-    //battle_ops stores 
-    //if the elements of battle_nums sum to not zero and the elements of battle_ops sum to not zero then, the battle equation can be evaluate
+    //battle_ops stores the operators in the battle equation in order from left to right
+    //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
     [SerializeField] private List<char> battle_ops;
+
+    //is_equation_complete stores whether or not the battle equation can be evaluated
+    [SerializeField] private bool is_equation_complete = false;
 
     void Awake()
     {
@@ -61,7 +64,19 @@ public class Player_Values : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Battle equation: " + battle_nums[0].ToString() + " " + battle_ops[0].ToString() + " " + battle_nums[1].ToString() + " " + battle_ops[1].ToString() + " " + battle_nums[2].ToString());
+        //check to see if equation is complete and is therefor ready to be evaluated
+        //if any of the elements of battle_nums or battle_ops is 0 then equation can NOT be evaluated
+        //CONTINUE HERE!!!
+        //battle_nums.Find();
+        for(int i = 0; i < battle_nums.Count; i++)
+        {
+            if(battle_nums[i] == 0)
+            {
+                is_equation_complete = false;
+                break;
+            }
+        }
+        //Debug.Log("Battle equation: " + battle_nums[0].ToString() + " " + battle_ops[0].ToString() + " " + battle_nums[1].ToString() + " " + battle_ops[1].ToString() + " " + battle_nums[2].ToString());
     }
 
     //Move to next turn
