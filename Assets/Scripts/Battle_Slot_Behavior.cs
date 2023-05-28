@@ -7,12 +7,15 @@ public class Battle_Slot_Behavior : MonoBehaviour
     //Number vars
     [SerializeField] private string slot_type;
     private Vector3 mouse_pos;
-    [SerializeField] LayerMask mask;
-    [SerializeField] int my_equation_position;
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private int my_equation_position;
+    [SerializeField] private bool is_slotted = false;
 
     //GameObject vars
     [SerializeField] private GameObject canvas_obj;
     [SerializeField] private Player_Values player_vals;
+
+    [SerializeField] private GameObject card;
 
     void Awake()
     {
@@ -34,7 +37,7 @@ public class Battle_Slot_Behavior : MonoBehaviour
         //cast ray from camera to mouse position through all colliders
         RaycastHit2D hit = Physics2D.Raycast(mouse_pos, Vector2.zero, Mathf.Infinity, mask);
 
-        //if above ray hit at least two things and the player is holding the correct card type then...
+        //if above ray hit something and the player is holding the correct card type then...
         if(hit.collider != null && player_vals.Get_Is_Holding() && player_vals.Get_Held_Card_Type() == slot_type)
         {
             //if the collider of this object was found at index 1 of hits 
@@ -48,7 +51,7 @@ public class Battle_Slot_Behavior : MonoBehaviour
                     Input.ResetInputAxes();
 
                     //get held card
-                    GameObject card = player_vals.Get_Held_Card();
+                    card = player_vals.Get_Held_Card();
 
                     if(slot_type == "operator")
                     {
@@ -86,13 +89,29 @@ public class Battle_Slot_Behavior : MonoBehaviour
                     }
 
                     //Debug.Log("Battle Slotted!");
+
                 }
             }
         }
+
+        if(card != null)
+        {
+            if(card.transform.position == gameObject.transform.position)
+                is_slotted = true;
+            else    
+                is_slotted = false;
+        }
+        else
+            is_slotted = false;
     }
 
     public void Set_My_Position(int new_pos)
     {
         my_equation_position = new_pos;
+    }
+
+    public bool Get_Is_Slotted()
+    {
+        return is_slotted;
     }
 }
