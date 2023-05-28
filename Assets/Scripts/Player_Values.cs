@@ -103,10 +103,10 @@ public class Player_Values : MonoBehaviour
         }
 
         //reset battle objects
-        battle_objects = new List<GameObject>(n + (n - 1));
+        battle_objects = new List<GameObject>(new GameObject[n + (n - 1)]);
 
         //make equation "empty"
-        battle_equation = new List<char>(n + (n - 1));
+        battle_equation = new List<char>(new char[n + (n - 1)]);
     }
 
     public int Get_Num_Operands()
