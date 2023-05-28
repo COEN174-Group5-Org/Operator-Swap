@@ -43,7 +43,7 @@ public class Player_Values : MonoBehaviour
 
     /*** Battle Slot variables ***/
     //battle_objects stores a List of the operator and operand cards currently in the battle slots
-    //These values must be set from the inspector!
+    //These values must be set from the inspector and must be in correct order!
     [SerializeField] private List<GameObject> battle_objects;
 
     //battle_nums stores 
@@ -121,8 +121,30 @@ public class Player_Values : MonoBehaviour
         }
         //Debug.Log("***************** Operators are: " + hand_operators[0] + ", " + hand_operators[1]);
 
-        //reset battle objects
-        //battle_objects = new List<GameObject>(new GameObject[equation_size]);
+        //give each battle object a position
+        for(int i = 0; i < equation_size; i++)
+        {
+            if(i == 0)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(0);
+            else if(i == 1)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(0);
+            else if(i == 2)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(1);
+            else if(i == 3)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(1);
+            else if(i == 4)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(2);
+            else if(i == 5)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(2);
+            else if(i == 6)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(3);
+            else if(i == 7)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(3);
+            else if(i == 8)
+                battle_objects[i].GetComponent<Battle_Slot_Behavior>().Set_My_Position(4);
+            else
+                Debug.Log("ERROR! equation is too large!");
+        } 
 
         //reset battle_nums
         battle_nums = new List<int>(new int[n]);
