@@ -64,10 +64,11 @@ public class Player_Values : MonoBehaviour
 
     void Update()
     {
+        //start off is_equation_complete as true then run it through the gauntlet
+        is_equation_complete = true;
+
         //check to see if equation is complete and is therefor ready to be evaluated
         //if any of the elements of battle_nums or battle_ops is 0 then equation can NOT be evaluated
-        //CONTINUE HERE!!!
-        //battle_nums.Find();
         for(int i = 0; i < battle_nums.Count; i++)
         {
             if(battle_nums[i] == 0)
@@ -76,6 +77,20 @@ public class Player_Values : MonoBehaviour
                 break;
             }
         }
+        //if equation is already incomplete, don't even bother with checking battle_ops
+        if(is_equation_complete == false)
+        {
+            for(int i = 0; i < battle_ops.Count; i++)
+            {
+                if(battle_ops[i] == 0)
+                {
+                    is_equation_complete = false;
+                    break;
+                }
+            }
+        }
+
+        //Debug.Log(is_equation_complete);
         //Debug.Log("Battle equation: " + battle_nums[0].ToString() + " " + battle_ops[0].ToString() + " " + battle_nums[1].ToString() + " " + battle_ops[1].ToString() + " " + battle_nums[2].ToString());
     }
 
