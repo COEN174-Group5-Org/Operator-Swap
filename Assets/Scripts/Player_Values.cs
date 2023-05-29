@@ -61,6 +61,8 @@ public class Player_Values : MonoBehaviour
     //is_equation_complete stores whether or not the battle equation can be evaluated
     private bool is_equation_complete = false;
 
+    private bool is_paused = false; 
+
     void Awake()
     {
         Set_Operand_Upper_Bound(9); //NOTE: The "9" in this line should be removed later
@@ -279,4 +281,15 @@ public class Player_Values : MonoBehaviour
         return is_equation_complete;
     }
     
+
+    public bool Get_Is_Paused()
+    {
+        return is_paused;     
+    }
+
+    public void Set_Is_Paused(bool noow)
+    {
+        is_paused = noow;     
+    }
+
 }

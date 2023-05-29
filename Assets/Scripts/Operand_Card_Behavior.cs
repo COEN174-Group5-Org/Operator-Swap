@@ -44,6 +44,9 @@ public class Operand_Card_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player_vals.Get_Is_Paused())
+            return;
+            
         //setup step
         float step = move_speed * Time.deltaTime;
 
