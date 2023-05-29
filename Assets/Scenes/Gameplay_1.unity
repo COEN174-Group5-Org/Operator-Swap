@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66902c575dd36cd4bb3ea13df1fa75dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operand_upper_bound: 9
+  number_of_operands: 3
   hand_operand_objs:
   - {fileID: 427207506}
   - {fileID: 983054662}
@@ -373,8 +373,6 @@ MonoBehaviour:
   - {fileID: 779170553}
   - {fileID: 1997396452}
   - {fileID: 1409448155}
-  battle_nums: 
-  battle_ops: 
 --- !u!1 &632732524
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class Player_Values : MonoBehaviour
 {
     //operand_upper_bound stores the upper bound of the operand range and is changed by the selected difficulty
     //This value must be above 0
-    [SerializeField] private int operand_upper_bound;
+    private int operand_upper_bound;
 
     //num_operands_in_deck stores the number of operand card that will appear in the player's hand at the start of a turn
     private int num_operands_in_deck; 
@@ -23,6 +23,10 @@ public class Player_Values : MonoBehaviour
 
     //held_card_type stores the type of the currently held card (should only be either "none", "operand", or "operator")
     private string held_card_type = "none";
+
+    //number_of_operands stores the number of operands that Player_Values should generate for the current scene
+    //This value must be set from the inspector!
+    [SerializeField] private int number_of_operands;
 
 
     /*** Player hand variables ***/
@@ -48,24 +52,25 @@ public class Player_Values : MonoBehaviour
 
     //battle_nums stores the operands in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    [SerializeField] private List<int> battle_nums;
+    private List<int> battle_nums;
 
     //battle_ops stores the operators in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    [SerializeField] private List<char> battle_ops;
+    private List<char> battle_ops;
 
     //is_equation_complete stores whether or not the battle equation can be evaluated
-    [SerializeField] private bool is_equation_complete = false;
+    private bool is_equation_complete = false;
 
     void Awake()
     {
-        Generate_Hand_For_n_Operands(3);
+        Set_Operand_Upper_Bound(9); //NOTE: The "9" in this line should be removed later
+        Generate_Hand_For_n_Operands();
     }
 
     void Update()
     {
-        //start off is_equation_complete as true then run it through the gauntlet
-        is_equation_complete = true;
+        //start off temp_bool as true then run it through the gauntlet
+        bool temp_bool = true;
 
         //check to see if equation is complete and is therefor ready to be evaluated
         //if any of the elements of battle_nums or battle_ops is 0 then equation can NOT be evaluated
@@ -73,39 +78,52 @@ public class Player_Values : MonoBehaviour
         {
             if(battle_nums[i] == 0)
             {
-                is_equation_complete = false;
+                temp_bool = false;
                 break;
             }
         }
         //if equation is already incomplete, don't even bother with checking battle_ops
-        if(is_equation_complete == false)
+        if(temp_bool == true)
         {
             for(int i = 0; i < battle_ops.Count; i++)
             {
                 if(battle_ops[i] == 0)
                 {
-                    is_equation_complete = false;
+                    temp_bool = false;
                     break;
                 }
             }
         }
 
+        if(temp_bool == true)
+            is_equation_complete = true;
+        else    
+            is_equation_complete = false;
         //Debug.Log(is_equation_complete);
         //Debug.Log("Battle equation: " + battle_nums[0].ToString() + " " + battle_ops[0].ToString() + " " + battle_nums[1].ToString() + " " + battle_ops[1].ToString() + " " + battle_nums[2].ToString());
     }
 
-    //Move to next turn
+    //Move to next turn with number_of_operands operands
     public void Next_Turn()
     {
+        //increment current turn
         current_turn++;
-        Generate_Hand_For_n_Operands(3);
+
+        //tell hand slots to delete the cards they spawned
+        for(int i = 0; i < number_of_operands; i++)
+            hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Destroy_Card();
+        for(int i = 0; i < (number_of_operands - 1); i++)
+            hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Destroy_Card();
+
+        //generate next hand
+        Generate_Hand_For_n_Operands();
     }
 
-    //generate hand for level with n operands
-    public void Generate_Hand_For_n_Operands(int n)
+    //generate hand for level with number_of_operands operands
+    public void Generate_Hand_For_n_Operands()
     {
         //let equation_size be the number of operands plus the number of operators
-        int equation_size = n + (n - 1);
+        int equation_size = number_of_operands + (number_of_operands - 1);
 
         //reset current turn
         current_turn = 0;
@@ -114,15 +132,15 @@ public class Player_Values : MonoBehaviour
         is_holding_card = false;
 
         //set number of operands to n
-        num_operands_in_deck = n;
+        num_operands_in_deck = number_of_operands;
 
         //set hand_operands and hand_operand_objs
-        hand_operands = new List<int>(new int[n]);
-        if(n > hand_operands.Count){
+        hand_operands = new List<int>(new int[number_of_operands]);
+        if(number_of_operands > hand_operands.Count){
             Debug.Log("ERROR!: nunber of OPERAND cards not correct!");
-            Debug.Log("Number of OPERAND cards is: " + hand_operands.Count + ". While the input number is: " + n);
+            Debug.Log("Number of OPERAND cards is: " + hand_operands.Count + ". While the input number is: " + number_of_operands);
         }
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < number_of_operands; i++)
         {
             hand_operands[i] = (int) Random.Range(1f, ((float) operand_upper_bound) + 0.99999f);
             hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operands[i]);
@@ -130,12 +148,12 @@ public class Player_Values : MonoBehaviour
         //Debug.Log("***************** Operands are: " + hand_operands[0] + ", " + hand_operands[1] + ", " + hand_operands[2]);
 
         //set hand_operators
-        hand_operators = new List<char>(new char[n - 1]);
-        if((n - 1) > hand_operators.Count){
+        hand_operators = new List<char>(new char[number_of_operands - 1]);
+        if((number_of_operands - 1) > hand_operators.Count){
             Debug.Log("ERROR!: nunber of OPERATOR cards not correct!");
-            Debug.Log("Number of cards is: " + hand_operands.Count + ". While the input number is: " + n);
+            Debug.Log("Number of cards is: " + hand_operands.Count + ". While the input number is: " + number_of_operands);
         }
-        for(int i = 0; i < (n - 1); i++)
+        for(int i = 0; i < (number_of_operands - 1); i++)
         {
             if(i == 0)
                 hand_operators[i] = '+';
@@ -177,10 +195,15 @@ public class Player_Values : MonoBehaviour
         } 
 
         //reset battle_nums
-        battle_nums = new List<int>(new int[n]);
+        battle_nums = new List<int>(new int[number_of_operands]);
 
         //reset battle_ops
-        battle_ops = new List<char>(new char[n - 1]);
+        battle_ops = new List<char>(new char[number_of_operands - 1]);
+    }
+
+    public void Set_Operand_Upper_Bound(int new_int)
+    {
+        operand_upper_bound = new_int;
     }
 
     public int Get_Num_Operands()
@@ -247,4 +270,13 @@ public class Player_Values : MonoBehaviour
     {
         battle_ops[index] = symbol;
     }
+
+    //Function Definition for Get_Is_Equation_Complete:
+    //if the equation is ready to be evaluated, then Get_Is_Equation_Complete return true
+    //else, Get_Is_Equation_Complete return false
+    public bool Get_Is_Equation_Complete()
+    {
+        return is_equation_complete;
+    }
+    
 }

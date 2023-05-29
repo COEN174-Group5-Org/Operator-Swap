@@ -14,6 +14,7 @@ public class Hand_Slot_Behavior : MonoBehaviour
     [SerializeField] private GameObject card_prefab;
     [SerializeField] private GameObject canvas_obj;
     [SerializeField] private Player_Values player_vals;
+    private GameObject spawned_card;
 
     void Start()
     {
@@ -22,11 +23,11 @@ public class Hand_Slot_Behavior : MonoBehaviour
         player_vals = canvas_obj.GetComponent<Player_Values>();
 
         //create a card
-        GameObject card = Instantiate(card_prefab, transform.position, Quaternion.identity);
+        spawned_card = Instantiate(card_prefab, transform.position, Quaternion.identity);
         if(slot_type == "operand")
-            card.GetComponent<Operand_Card_Behavior>().Set_My_Operand(slot_symbol);
+            spawned_card.GetComponent<Operand_Card_Behavior>().Set_My_Operand(slot_symbol);
         else if(slot_type == "operator")
-            card.GetComponent<Operator_Card_Behavior>().Set_My_Operator((char) slot_symbol);
+            spawned_card.GetComponent<Operator_Card_Behavior>().Set_My_Operator((char) slot_symbol);
 
         //make sure this slot is not both an operand slot and an operator slot
         if(slot_type != "operand" && slot_type != "operator")
@@ -99,5 +100,13 @@ public class Hand_Slot_Behavior : MonoBehaviour
     public void Set_Slot_Symbol(int symbol)
     {
         slot_symbol = symbol;
+    }
+
+    public void Destroy_Card()
+    {
+        if(spawned_card == null)
+            Debug.Log("ERROR! No card to destroy!");
+        else
+            Destroy(spawned_card);
     }
 }

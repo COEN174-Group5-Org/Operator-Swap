@@ -13,7 +13,6 @@ public class Battle_Slot_Behavior : MonoBehaviour
     //GameObject vars
     [SerializeField] private GameObject canvas_obj;
     [SerializeField] private Player_Values player_vals;
-
     [SerializeField] private GameObject card;
 
     void Awake()
