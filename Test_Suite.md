@@ -2,7 +2,7 @@ Test Suite for this Project
 Card Functionality
 1.  Card Functionality Test #1
 	a. Action: Hover mouse over card. 
-b. Expected output: The card should have a hover animation. 
+	b. Expected output: The card should have a hover animation. 
 2.  Card Functionality Test #2
 	a. Action: Click on an operand card and move the mouse around the screen. 
 	b. Expected output: The operand card should follow the mouse, moving wherever the mouse is. 
