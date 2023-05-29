@@ -18,7 +18,7 @@ public class GenerateObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (debug) if (++fnum % 64 == 0) debugObjective();
+        if (debug) if (++fnum % 64 == 0) debugObjective();
     }
 
     bool evaluator(List<int> nums, List<char> ops, (objType type, int target) objToken)
