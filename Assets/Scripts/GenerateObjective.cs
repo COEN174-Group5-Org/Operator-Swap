@@ -18,7 +18,7 @@ public class GenerateObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (debug) if (++fnum % 64 == 0) debugObjective();
+        if (debug) if (++fnum % 64 == 0) debugObjective();
     }
 
     bool evaluator(List<int> nums, List<char> ops, (objType type, int target) objToken)
@@ -40,7 +40,14 @@ public class GenerateObjective : MonoBehaviour
         var nums = new List<int>();
         for (int i = 0; i < 5; ++i) nums.Add(Random.Range(1, 11));
         var ops = new List<char>();
-        for (int i = 0; i < 4; ++i) ops.Add(Random.Range(0, 2) == 0 ? '+' : '*');
+        for (int i = 0; i < 4; ++i)
+        {
+            var op = Random.Range(0, 4);
+            if (op == 0) ops.Add('*');
+            else if (op == 1) ops.Add('/');
+            else if (op == 2) ops.Add('+');
+            else ops.Add('-');
+        }
         generateObjective(nums, ops);
         return;
     }
