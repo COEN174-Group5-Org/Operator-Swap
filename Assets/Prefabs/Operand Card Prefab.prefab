@@ -50,24 +50,9 @@ MonoBehaviour:
   is_following: 0
   move_speed: 25
   raise_dist: 0.5
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
   canvas_obj: {fileID: 0}
   player_vals: {fileID: 0}
   card_obj: {fileID: 0}
-  my_operand: 1
-  card_sprites:
-  - {fileID: 353913345, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -386564828, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 685100715, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 2074752830, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 874193870, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -1773173127, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -1711039928, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 1860466198, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -1502899844, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  card_spr: {fileID: 2094500425884736901}
 --- !u!61 &2094500425444629258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 2094500425884736903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2094500425444629260}
@@ -167,7 +152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 353913345, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
