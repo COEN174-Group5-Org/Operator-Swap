@@ -707,6 +707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3eaa88622d353a4eb531649793464ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nums: 000000000200000003000000
+  ops: 2b002a00
   objectiveTextGameObj: {fileID: 0}
   objectiveObj: {fileID: 0}
   generateObjectiveOBJ: {fileID: 0}

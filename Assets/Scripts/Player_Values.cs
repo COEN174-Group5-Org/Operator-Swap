@@ -38,7 +38,7 @@ public class Player_Values : MonoBehaviour
     [SerializeField] private List<GameObject> hand_operand_objs;
 
     //hand_operators stores a List of all the character operators currently in the player's hand
-    private List<char> hand_operators;
+    [SerializeField] private List<char> hand_operators;
 
     //hand_operator_objs stores a List of the operator card objects currently in the player's hand
     //These values must be set from the inspector!
@@ -268,6 +268,11 @@ public class Player_Values : MonoBehaviour
         return battle_ops;
     }
 
+    public List<char> Get_Hand_Ops()
+    {
+        return hand_operators;
+    }
+
     public void Set_Battle_Ops(char symbol, int index)
     {
         battle_ops[index] = symbol;
@@ -291,5 +296,8 @@ public class Player_Values : MonoBehaviour
     {
         is_paused = noow;     
     }
+
+    
+
 
 }

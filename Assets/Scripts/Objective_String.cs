@@ -5,6 +5,11 @@ using TMPro;
 
 public class Objective_String : MonoBehaviour
 {
+    //call from player values
+    public List<int> nums;
+    public List<char> ops;
+
+
     public GameObject objectiveTextGameObj;
     public TextMeshProUGUI objectiveObj;
 
@@ -26,8 +31,11 @@ public class Objective_String : MonoBehaviour
         objectiveObj = objectiveTextGameObj.GetComponent<TextMeshProUGUI>();
 
         //grab numbers and operands from player values (for now random)
-        List<int> nums = new List<int>(){1,2,3};
-        List<char> ops = new List<char>(){'+', '-'};
+        Player_Values playerValuesOBJ = generateObjectiveOBJ.GetComponent<Player_Values>();
+        nums = playerValuesOBJ.Get_Battle_Nums();
+        
+        ops = playerValuesOBJ.Get_Hand_Ops();
+        Debug.Log(ops[0]);
 
         var objective = oj.generateObjective(nums, ops);
         objectiveObj.text = objective.objStr;
