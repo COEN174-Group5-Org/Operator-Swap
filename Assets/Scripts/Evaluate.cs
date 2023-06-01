@@ -17,6 +17,11 @@ public class Evaluate : MonoBehaviour
     }
 
     public void evaluate(){
+        //grab objective from objective string script
+        //call evaluate from generateObjective
+        //check if they passed or failed
+        //display correct screen
+        //set active or enable
         Debug.Log("pressed button");
     }
 }
