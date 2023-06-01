@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum objType { GREATER = 0, LESSER }
+
 public class GenerateObjective : MonoBehaviour
 {
     private bool debug = false;
     private int fnum = 0;
-    enum objType { GREATER = 0, LESSER }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,19 +18,41 @@ public class GenerateObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (debug) if (++fnum % 64 == 0) randomObjective();
+        if (debug) if (++fnum % 64 == 0) debugObjective();
     }
 
-    string randomObjective()
+    bool evaluator(List<int> nums, List<char> ops, (objType type, int target) objToken)
+    {
+        var expression = nums[0].ToString();
+        nums.RemoveAt(0);
+        while (nums.Count > 0)
+        {
+            expression += " " + ops[0] + " " + nums[0];
+            ops.RemoveAt(0);
+            nums.RemoveAt(0);
+        }
+        var actual = Eval(expression);
+        return objToken.type == objType.GREATER ? actual > objToken.target : actual > objToken.target;
+    }
+
+    void debugObjective()
     {
         var nums = new List<int>();
         for (int i = 0; i < 5; ++i) nums.Add(Random.Range(1, 11));
         var ops = new List<char>();
-        for (int i = 0; i < 4; ++i) ops.Add(Random.Range(0, 2) == 0 ? '+' : '*');
-        return generateObjective(nums, ops);
+        for (int i = 0; i < 4; ++i)
+        {
+            var op = Random.Range(0, 4);
+            if (op == 0) ops.Add('*');
+            else if (op == 1) ops.Add('/');
+            else if (op == 2) ops.Add('+');
+            else ops.Add('-');
+        }
+        generateObjective(nums, ops);
+        return;
     }
 
-    string generateObjective(List<int> nums, List<char> ops)
+    public (string objStr, (objType type, int target) objToken) generateObjective(List<int> nums, List<char> ops)
     {
         nums.Sort();
         ops.Sort();
@@ -59,10 +83,12 @@ public class GenerateObjective : MonoBehaviour
             Debug.Log("Operators in hand: " + string.Join(", ", ops));
             Debug.Log("Sampled outputs: " + string.Join(", ", samples));
             Debug.Log("Objective chosen: " + objStr);
+            Debug.Log("Objective token: " + (type, target).ToString());
             Debug.Log(isImpossible ? "Objective impossible!" : "Objective verified.");
             if (isImpossible) objStr = "error contact developer with logs";
         }
-        return objStr;
+
+        return (objStr, (type, target));
     }
 
     int Sample(int nnums, List<int> nums, List<char> ops)
@@ -83,7 +109,7 @@ public class GenerateObjective : MonoBehaviour
             foreach (var n in ops_index) if (n == r) match = true;
             if (!match) ops_index.Add(r);
         }
-        var expression = System.Convert.ToString(nums[nums_index[0]]);
+        var expression = nums[nums_index[0]].ToString();
         nums_index.RemoveAt(0);
         while (nums_index.Count > 0)
         {
