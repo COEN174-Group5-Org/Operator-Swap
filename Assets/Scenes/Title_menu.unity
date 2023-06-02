@@ -3589,7 +3589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7264151, g: 0.5331993, b: 0.4481844, a: 1}
+  m_Color: {r: 0, g: 0.106540695, b: 0.1792453, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4172,6 +4172,7 @@ GameObject:
   - component: {fileID: 1508491017}
   - component: {fileID: 1508491019}
   - component: {fileID: 1508491018}
+  - component: {fileID: 1508491020}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -4196,8 +4197,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 94}
-  m_SizeDelta: {x: 640.7223, y: 360.4063}
+  m_AnchoredPosition: {x: 1, y: 80}
+  m_SizeDelta: {x: 549.3419, y: 472.7911}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1508491018
 MonoBehaviour:
@@ -4219,7 +4220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 03a34261d73cb8349a7dbf97df125e63, type: 3}
+  m_Sprite: {fileID: -1393871522, guid: 5d00c85d58b5a6e419b7d23369707ccc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4237,6 +4238,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508491016}
   m_CullTransparentMesh: 1
+--- !u!95 &1508491020
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508491016}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d56c2c8ab907f1428e220dd231b6720, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1557584622
 GameObject:
   m_ObjectHideFlags: 0
@@ -5334,6 +5355,10 @@ PrefabInstance:
     - target: {fileID: 8752816711520731131, guid: 69d501206b561fb4b93c5cbc8adcbf0e, type: 3}
       propertyPath: m_Name
       value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752816711520731131, guid: 69d501206b561fb4b93c5cbc8adcbf0e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8752816711520731132, guid: 69d501206b561fb4b93c5cbc8adcbf0e, type: 3}
       propertyPath: m_RootOrder
