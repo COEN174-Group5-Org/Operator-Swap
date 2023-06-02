@@ -17,15 +17,12 @@ public class Evaluate : MonoBehaviour
         //battle ops/ battlenums
 
         Player_Values PlayerValuesOBJ = GameObject.Find("Canvas").GetComponent<Player_Values>();
-        List<int> nums = new List<int>(PlayerValuesOBJ.battle_nums);
-        List<char> ops = new List<char>(PlayerValuesOBJ.battle_ops);
+        List<int> nums = new List<int>(PlayerValuesOBJ.Get_Battle_Nums());
+        List<char> ops = new List<char>(PlayerValuesOBJ.Get_Battle_Ops());
 
         // //check if they passed or failed
         GenerateObjective generateObjectiveOBJ = GameObject.Find("Canvas").GetComponent<GenerateObjective>();
         bool passed = generateObjectiveOBJ.evaluator(nums, ops, objectiveToken.objToken);
-
-        Debug.Log("passed?");
-        Debug.Log(passed);
         
         //display correct screen
         if(passed){
