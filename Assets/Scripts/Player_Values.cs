@@ -31,14 +31,14 @@ public class Player_Values : MonoBehaviour
 
     /*** Player hand variables ***/
     //hand_operands stores a List of all the integer operands currently in the player's hand
-    private List<int> hand_operands;
+    [SerializeField] private List<int> hand_operands;
 
     //hand_operand_objs stores a List of the operand card objects currently in the player's hand
     //These values must be set from the inspector!
     [SerializeField] private List<GameObject> hand_operand_objs;
 
     //hand_operators stores a List of all the character operators currently in the player's hand
-    private List<char> hand_operators;
+    [SerializeField] private List<char> hand_operators;
 
     //hand_operator_objs stores a List of the operator card objects currently in the player's hand
     //These values must be set from the inspector!
@@ -63,16 +63,26 @@ public class Player_Values : MonoBehaviour
 
     private bool is_paused = false; 
 
-    void Awake()
-    {
-        Set_Operand_Upper_Bound(9); //NOTE: The "9" in this line should be removed later
-        Generate_Hand_For_n_Operands();
+    public Pause_Menu pl;
+
+    // void Awake()
+    // {
+    //     Set_Operand_Upper_Bound(9); //NOTE: The "9" in this line should be removed later
+    //     Generate_Hand_For_n_Operands();
+    // }
+
+    void Start(){
+        pl = GameObject.Find("Canvas").GetComponent<Pause_Menu>();
     }
 
     void Update()
     {
         //start off temp_bool as true then run it through the gauntlet
         bool temp_bool = true;
+
+        while(pl.Get_Difficulty_Screen_Is_UP()){
+            ;
+        }
 
         //check to see if equation is complete and is therefor ready to be evaluated
         //if any of the elements of battle_nums or battle_ops is 0 then equation can NOT be evaluated

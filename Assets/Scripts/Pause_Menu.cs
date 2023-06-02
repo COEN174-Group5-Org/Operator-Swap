@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class Pause_Menu : MonoBehaviour
 {
     public static bool GameIsPaused = false; 
+    public static bool DifficultyScreenIsUP = true;
     public static bool GameIsOver = false; // when success or defeat is triggered, set this boolean to true
     // to use this boolean: 
     // if(Pause_Menu.GameIsPaused){ ... }
@@ -79,6 +80,8 @@ public class Pause_Menu : MonoBehaviour
     {
         difficultyUI.SetActive(false);
         pauseButton.SetActive(true);
+        pl.Set_Operand_Upper_Bound(5);
+        pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
     }
@@ -87,6 +90,8 @@ public class Pause_Menu : MonoBehaviour
     {
         difficultyUI.SetActive(false);
         pauseButton.SetActive(true);
+        pl.Set_Operand_Upper_Bound(9);
+        pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
     }
@@ -95,8 +100,20 @@ public class Pause_Menu : MonoBehaviour
     {
         difficultyUI.SetActive(false);
         pauseButton.SetActive(true);
+        pl.Set_Operand_Upper_Bound(12);
+        pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
+    }
+
+    public void Set_Difficulty_Screen_Is_UP(bool new_bool)
+    {
+        DifficultyScreenIsUP = new_bool;
+    }
+
+    public bool Get_Difficulty_Screen_Is_UP()
+    {
+        return DifficultyScreenIsUP;
     }
 
     public void success()
