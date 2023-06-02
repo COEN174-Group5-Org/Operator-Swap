@@ -268,6 +268,16 @@ public class Player_Values : MonoBehaviour
         return battle_ops;
     }
 
+    public List<char> Get_Hand_Ops()
+    {
+        return hand_operators;
+    }
+
+    public List<int> Get_Hand_Nums()
+    {
+        return hand_operands;
+    }
+
     public void Set_Battle_Ops(char symbol, int index)
     {
         battle_ops[index] = symbol;
@@ -291,5 +301,8 @@ public class Player_Values : MonoBehaviour
     {
         is_paused = noow;     
     }
+
+    
+
 
 }

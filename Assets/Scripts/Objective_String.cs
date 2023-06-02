@@ -5,12 +5,17 @@ using TMPro;
 
 public class Objective_String : MonoBehaviour
 {
+    //call from player values
+    public List<int> nums;
+    public List<char> ops;
+
+
     public GameObject objectiveTextGameObj;
     public TextMeshProUGUI objectiveObj;
 
     public GameObject generateObjectiveOBJ;
 
-    public (string objStr, (objType type, int target) objToken) objective; //need to save in order to evaluate later
+    public (string objStr, (objType type, int target) objToken) objectiveToken; //need to save in order to evaluate later
 
     // display objective into 'objective text' text box
     // Start is called before the first frame update
@@ -22,20 +27,16 @@ public class Objective_String : MonoBehaviour
         generateObjectiveOBJ = GameObject.Find("Canvas");
         GenerateObjective oj = generateObjectiveOBJ.GetComponent<GenerateObjective>();
 
-        objectiveTextGameObj = GameObject.Find("objective text");
+        objectiveTextGameObj = GameObject.Find("objective_text");
         objectiveObj = objectiveTextGameObj.GetComponent<TextMeshProUGUI>();
 
         //grab numbers and operands from player values (for now random)
-        List<int> nums = new List<int>(){1,2,3};
-        List<char> ops = new List<char>(){'+', '-'};
+        Player_Values playerValuesOBJ = generateObjectiveOBJ.GetComponent<Player_Values>();
+        nums = new List<int>(playerValuesOBJ.Get_Hand_Nums());
+        ops = new List<char>(playerValuesOBJ.Get_Hand_Ops());
 
-        var objective = oj.generateObjective(nums, ops);
-        objectiveObj.text = objective.objStr;
+        objectiveToken = oj.generateObjective(nums, ops);
+        objectiveObj.text = objectiveToken.objStr;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
