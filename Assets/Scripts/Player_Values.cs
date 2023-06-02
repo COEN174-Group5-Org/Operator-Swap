@@ -52,11 +52,11 @@ public class Player_Values : MonoBehaviour
 
     //battle_nums stores the operands in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    private List<int> battle_nums;
+     [SerializeField] public List<int> battle_nums;
 
     //battle_ops stores the operators in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    private List<char> battle_ops;
+    [SerializeField] public List<char> battle_ops;
 
     //is_equation_complete stores whether or not the battle equation can be evaluated
     private bool is_equation_complete = false;
@@ -271,6 +271,11 @@ public class Player_Values : MonoBehaviour
     public List<char> Get_Hand_Ops()
     {
         return hand_operators;
+    }
+
+    public List<int> Get_Hand_Nums()
+    {
+        return hand_operands;
     }
 
     public void Set_Battle_Ops(char symbol, int index)

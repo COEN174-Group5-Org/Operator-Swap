@@ -666,8 +666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 888689609}
   pauseButton: {fileID: 2020741178}
-  successScreenUI: {fileID: 0}
-  defeatScreenUI: {fileID: 0}
+  successScreenUI: {fileID: 1849625321}
+  defeatScreenUI: {fileID: 1675337490}
   pl: {fileID: 0}
 --- !u!114 &622302654
 MonoBehaviour:
@@ -686,6 +686,7 @@ MonoBehaviour:
   - {fileID: 427207506}
   - {fileID: 1534797794}
   - {fileID: 1443885626}
+  hand_operators: 
   hand_operator_objs:
   - {fileID: 449491311}
   - {fileID: 1650453590}
@@ -736,6 +737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf58eeffd307bdc499de69aaa3b9ad86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  successScreenUI: {fileID: 1849625321}
+  defeatScreenUI: {fileID: 1675337490}
 --- !u!1 &632732524
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +983,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Evaluate, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -15,7 +15,7 @@ public class Objective_String : MonoBehaviour
 
     public GameObject generateObjectiveOBJ;
 
-    public (string objStr, (objType type, int target) objToken) objective; //need to save in order to evaluate later
+    public (string objStr, (objType type, int target) objToken) objectiveToken; //need to save in order to evaluate later
 
     // display objective into 'objective text' text box
     // Start is called before the first frame update
@@ -32,13 +32,11 @@ public class Objective_String : MonoBehaviour
 
         //grab numbers and operands from player values (for now random)
         Player_Values playerValuesOBJ = generateObjectiveOBJ.GetComponent<Player_Values>();
-        nums = playerValuesOBJ.Get_Battle_Nums();
-        
-        ops = playerValuesOBJ.Get_Hand_Ops();
-        Debug.Log(ops[0]);
+        nums = new List<int>(playerValuesOBJ.Get_Hand_Nums());
+        ops = new List<char>(playerValuesOBJ.Get_Hand_Ops());
 
-        var objective = oj.generateObjective(nums, ops);
-        objectiveObj.text = objective.objStr;
+        objectiveToken = oj.generateObjective(nums, ops);
+        objectiveObj.text = objectiveToken.objStr;
     }
 
 }
