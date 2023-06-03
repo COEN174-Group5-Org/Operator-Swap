@@ -84,6 +84,7 @@ public class Pause_Menu : MonoBehaviour
         pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
+        pl.Start_Level();
     }
 
     public void medium()
@@ -94,16 +95,18 @@ public class Pause_Menu : MonoBehaviour
         pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
+        pl.Start_Level();
     }
 
     public void hard()
     {
         difficultyUI.SetActive(false);
         pauseButton.SetActive(true);
-        pl.Set_Operand_Upper_Bound(12);
+        pl.Set_Operand_Upper_Bound(9); //NOTE: Change this to 12 when more card sprites are added
         pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
+        pl.Start_Level();
     }
 
     public void Set_Difficulty_Screen_Is_UP(bool new_bool)

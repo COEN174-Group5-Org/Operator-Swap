@@ -65,24 +65,31 @@ public class Player_Values : MonoBehaviour
 
     public Pause_Menu pl;
 
-    // void Awake()
-    // {
-    //     Set_Operand_Upper_Bound(9); //NOTE: The "9" in this line should be removed later
-    //     Generate_Hand_For_n_Operands();
-    // }
-
-    void Start(){
+    void Awake()
+    {
         pl = GameObject.Find("Canvas").GetComponent<Pause_Menu>();
+    }
+
+    public void Start_Level()
+    {
+        //Start each Hand slot
+        for(int i = 0; i < hand_operand_objs.Count; i++)
+        {
+            hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Start_Hand();
+        }
+        for(int i = 0; i < hand_operator_objs.Count; i++)
+        {
+            hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Start_Hand();
+        }
     }
 
     void Update()
     {
+        if(is_paused)
+            return;
+
         //start off temp_bool as true then run it through the gauntlet
         bool temp_bool = true;
-
-        while(pl.Get_Difficulty_Screen_Is_UP()){
-            ;
-        }
 
         //check to see if equation is complete and is therefor ready to be evaluated
         //if any of the elements of battle_nums or battle_ops is 0 then equation can NOT be evaluated
