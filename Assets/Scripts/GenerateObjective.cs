@@ -21,7 +21,7 @@ public class GenerateObjective : MonoBehaviour
         if (debug) if (++fnum % 64 == 0) debugObjective();
     }
 
-    bool evaluator(List<int> nums, List<char> ops, (objType type, int target) objToken)
+    public bool evaluator(List<int> nums, List<char> ops, (objType type, int target) objToken)
     {
         var expression = nums[0].ToString();
         nums.RemoveAt(0);
@@ -32,7 +32,7 @@ public class GenerateObjective : MonoBehaviour
             nums.RemoveAt(0);
         }
         var actual = Eval(expression);
-        return objToken.type == objType.GREATER ? actual > objToken.target : actual > objToken.target;
+        return objToken.type == objType.GREATER ? actual > objToken.target : actual < objToken.target;
     }
 
     void debugObjective()
