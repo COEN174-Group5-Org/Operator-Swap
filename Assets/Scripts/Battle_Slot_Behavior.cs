@@ -15,12 +15,15 @@ public class Battle_Slot_Behavior : MonoBehaviour
     [SerializeField] private Player_Values player_vals;
     [SerializeField] private GameObject card;
 
-    void Awake()
+    void Start()
     {
         //setup
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
+    }
 
+    public void Start_Hand()
+    {
         //make sure this slot is not both an operand slot and an operator slot
         if(slot_type != "operand" && slot_type != "operator")
             Debug.Log("ERROR! Invalid slot type given!");
