@@ -881,6 +881,8 @@ MonoBehaviour:
   - {fileID: 1997396452}
   - {fileID: 1423270079}
   pl: {fileID: 0}
+  objective_obj: {fileID: 1076051753}
+  eval_button_obj: {fileID: 644024127}
 --- !u!114 &622302655
 MonoBehaviour:
   m_ObjectHideFlags: 0

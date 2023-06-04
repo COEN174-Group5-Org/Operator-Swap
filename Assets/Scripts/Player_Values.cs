@@ -65,9 +65,15 @@ public class Player_Values : MonoBehaviour
 
     public Pause_Menu pl;
 
+    [SerializeField] private GameObject objective_obj;
+
+    [SerializeField] private GameObject eval_button_obj;
+
     void Awake()
     {
         pl = GameObject.Find("Canvas").GetComponent<Pause_Menu>();
+        //objective_obj = GameObject.Find("objective_text");
+        //eval_button_obj = GameObject.Find("EvalButton");
     }
 
     public void Start_Level()
@@ -85,6 +91,10 @@ public class Player_Values : MonoBehaviour
         //generate and display correct objective
         GameObject generateObjectiveOBJ = GameObject.Find("Canvas");
         Objective_String oj = generateObjectiveOBJ.GetComponent<Objective_String>();
+
+        //display relevant gameplay UI elements
+        objective_obj.SetActive(true);
+        eval_button_obj.SetActive(true);
 
         oj.DisplayObjective();
     }
