@@ -27,9 +27,11 @@ public class Evaluate : MonoBehaviour
         
         //display correct screen
         if(passed){
-            successScreenUI.SetActive(true);
+            Debug.Log("passed");
+            //successScreenUI.SetActive(true);
         } else {
-            defeatScreenUI.SetActive(true);
+            Debug.Log("failed");
+            //defeatScreenUI.SetActive(true);
         }
 
         Time.timeScale = 0f;

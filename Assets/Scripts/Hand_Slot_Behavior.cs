@@ -21,7 +21,10 @@ public class Hand_Slot_Behavior : MonoBehaviour
         //setup
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
+    }
 
+    public void Start_Hand()
+    {
         //create a card
         spawned_card = Instantiate(card_prefab, transform.position, Quaternion.identity);
         if(slot_type == "operand")

@@ -31,7 +31,7 @@ public class Player_Values : MonoBehaviour
 
     /*** Player hand variables ***/
     //hand_operands stores a List of all the integer operands currently in the player's hand
-    private List<int> hand_operands;
+    [SerializeField] private List<int> hand_operands;
 
     //hand_operand_objs stores a List of the operand card objects currently in the player's hand
     //These values must be set from the inspector!
@@ -52,25 +52,48 @@ public class Player_Values : MonoBehaviour
 
     //battle_nums stores the operands in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-     [SerializeField] private List<int> battle_nums;
+    private List<int> battle_nums;
 
     //battle_ops stores the operators in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    [SerializeField] private List<char> battle_ops;
+    private List<char> battle_ops;
 
     //is_equation_complete stores whether or not the battle equation can be evaluated
     private bool is_equation_complete = false;
 
     private bool is_paused = false; 
 
+    public Pause_Menu pl;
+
     void Awake()
     {
-        Set_Operand_Upper_Bound(9); //NOTE: The "9" in this line should be removed later
-        Generate_Hand_For_n_Operands();
+        pl = GameObject.Find("Canvas").GetComponent<Pause_Menu>();
+    }
+
+    public void Start_Level()
+    {
+        //Start each Hand slot
+        for(int i = 0; i < hand_operand_objs.Count; i++)
+        {
+            hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Start_Hand();
+        }
+        for(int i = 0; i < hand_operator_objs.Count; i++)
+        {
+            hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Start_Hand();
+        }
+
+        //generate and display correct objective
+        GameObject generateObjectiveOBJ = GameObject.Find("Canvas");
+        Objective_String oj = generateObjectiveOBJ.GetComponent<Objective_String>();
+
+        oj.DisplayObjective();
     }
 
     void Update()
     {
+        if(is_paused)
+            return;
+
         //start off temp_bool as true then run it through the gauntlet
         bool temp_bool = true;
 
@@ -119,6 +142,8 @@ public class Player_Values : MonoBehaviour
 
         //generate next hand
         Generate_Hand_For_n_Operands();
+
+        
     }
 
     //generate hand for level with number_of_operands operands
