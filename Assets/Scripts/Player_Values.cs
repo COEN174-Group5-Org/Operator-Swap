@@ -127,9 +127,6 @@ public class Player_Values : MonoBehaviour
         //let equation_size be the number of operands plus the number of operators
         int equation_size = number_of_operands + (number_of_operands - 1);
 
-        //reset current turn
-        current_turn = 0;
-
         //reset is_holding_card
         is_holding_card = false;
 
@@ -195,6 +192,38 @@ public class Player_Values : MonoBehaviour
             else
                 Debug.Log("ERROR! equation is too large!");
         } 
+
+        //reset battle_nums
+        battle_nums = new List<int>(new int[number_of_operands]);
+
+        //reset battle_ops
+        battle_ops = new List<char>(new char[number_of_operands - 1]);
+    }
+
+    public void Generate_Hand_For_Retry()
+    {
+        //reset is_holding_card
+        is_holding_card = false;
+
+        for(int i = 0; i < number_of_operands; i++)
+        {
+            hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operands[i]);
+        }
+
+        for(int i = 0; i < (number_of_operands - 1); i++)
+        {
+            if(i == 0)
+                hand_operators[i] = '+';
+            else if(i == 1)
+                hand_operators[i] = '*';
+            else if(i == 2)
+                hand_operators[i] = '-';
+            else if(i == 3)
+                hand_operators[i] = '/';
+            else
+                Debug.Log("ERROR! number of OPERATOR cards exceeds 4!");
+            hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operators[i]);
+        }
 
         //reset battle_nums
         battle_nums = new List<int>(new int[number_of_operands]);

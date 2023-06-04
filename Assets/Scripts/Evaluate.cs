@@ -5,8 +5,9 @@ using UnityEngine;
 public class Evaluate : MonoBehaviour
 {
 
-    public GameObject successScreenUI;
-    public GameObject defeatScreenUI;
+    [SerializeField] private GameObject successScreenUI;
+    [SerializeField] private GameObject defeatScreenUI;
+    [SerializeField] private GameObject eval_button_obj;
 
     public void evaluate(){
         //grab objectiveToken from objective string script
@@ -30,7 +31,9 @@ public class Evaluate : MonoBehaviour
         } else {
             defeatScreenUI.SetActive(true);
         }
-        //display correct screen
-        //set active or enable
+
+        Time.timeScale = 0f;
+        PlayerValuesOBJ.Set_Is_Paused(true);
+        eval_button_obj.SetActive(false);
     }
 }
