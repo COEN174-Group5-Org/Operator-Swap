@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2265708014262377937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 2.47, z: 0}
-  m_LocalScale: {x: 2.554771, y: 8.89, z: 2.2198}
+  m_LocalScale: {x: 1.7, y: 6, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,8 +102,10 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  my_equation_position: 0
   canvas_obj: {fileID: 0}
   player_vals: {fileID: 0}
+  card: {fileID: 0}
 --- !u!61 &2265708014262377902
 BoxCollider2D:
   m_ObjectHideFlags: 0

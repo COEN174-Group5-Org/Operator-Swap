@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 147778324277072493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: -2.44, z: 0}
-  m_LocalScale: {x: 2.554771, y: 8.89, z: 2.2198}
+  m_LocalScale: {x: 1.7, y: 6, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,6 +102,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  slot_symbol: 0
   card_prefab: {fileID: 2173319396906354321, guid: c3e9bc9d29736fc46b95f17352ea98b4, type: 3}
   canvas_obj: {fileID: 0}
   player_vals: {fileID: 0}
