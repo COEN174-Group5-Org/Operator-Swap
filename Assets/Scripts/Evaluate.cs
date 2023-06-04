@@ -26,9 +26,11 @@ public class Evaluate : MonoBehaviour
         
         //display correct screen
         if(passed){
-            successScreenUI.SetActive(true);
+            Debug.Log("passed");
+            //successScreenUI.SetActive(true);
         } else {
-            defeatScreenUI.SetActive(true);
+            Debug.Log("failed");
+            //defeatScreenUI.SetActive(true);
         }
         //display correct screen
         //set active or enable

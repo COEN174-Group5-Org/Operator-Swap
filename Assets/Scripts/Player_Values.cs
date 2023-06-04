@@ -81,6 +81,12 @@ public class Player_Values : MonoBehaviour
         {
             hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Start_Hand();
         }
+
+        //generate and display correct objective
+        GameObject generateObjectiveOBJ = GameObject.Find("Canvas");
+        Objective_String oj = generateObjectiveOBJ.GetComponent<Objective_String>();
+
+        oj.DisplayObjective();
     }
 
     void Update()
@@ -136,6 +142,8 @@ public class Player_Values : MonoBehaviour
 
         //generate next hand
         Generate_Hand_For_n_Operands();
+
+        
     }
 
     //generate hand for level with number_of_operands operands
