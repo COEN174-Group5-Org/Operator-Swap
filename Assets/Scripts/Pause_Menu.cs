@@ -18,6 +18,7 @@ public class Pause_Menu : MonoBehaviour
     public GameObject successScreenUI;
     public GameObject defeatScreenUI;
     public GameObject difficultyUI;
+    [SerializeField] private GameObject eval_button_obj;
 
     public Player_Values pl;
 
@@ -131,6 +132,14 @@ public class Pause_Menu : MonoBehaviour
         GameIsOver = true; 
         pauseButton.SetActive(false);
         defeatScreenUI.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        pl.Generate_Hand_For_Retry();
+        pauseButton.SetActive(true);
+        defeatScreenUI.SetActive(false);
+        eval_button_obj.SetActive(true);
     }
 
 }

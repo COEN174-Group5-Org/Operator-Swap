@@ -52,14 +52,14 @@ public class Player_Values : MonoBehaviour
 
     //battle_nums stores the operands in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    private List<int> battle_nums;
+    [SerializeField] private List<int> battle_nums;
 
     //battle_ops stores the operators in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    private List<char> battle_ops;
+    [SerializeField] private List<char> battle_ops;
 
     //is_equation_complete stores whether or not the battle equation can be evaluated
-    private bool is_equation_complete = false;
+    [SerializeField] private bool is_equation_complete = false;
 
     private bool is_paused = false; 
 
@@ -78,6 +78,8 @@ public class Player_Values : MonoBehaviour
 
     public void Start_Level()
     {
+        Time.timeScale = 1f;
+
         //Start each Hand slot
         for(int i = 0; i < hand_operand_objs.Count; i++)
         {
@@ -141,6 +143,8 @@ public class Player_Values : MonoBehaviour
     //Move to next turn with number_of_operands operands
     public void Next_Turn()
     {
+        Time.timeScale = 1f;
+
         //increment current turn
         current_turn++;
 
@@ -237,34 +241,13 @@ public class Player_Values : MonoBehaviour
 
     public void Generate_Hand_For_Retry()
     {
+        Time.timeScale = 1f;
+
         //reset is_holding_card
         is_holding_card = false;
 
-        for(int i = 0; i < number_of_operands; i++)
-        {
-            hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operands[i]);
-        }
-
-        for(int i = 0; i < (number_of_operands - 1); i++)
-        {
-            if(i == 0)
-                hand_operators[i] = '+';
-            else if(i == 1)
-                hand_operators[i] = '*';
-            else if(i == 2)
-                hand_operators[i] = '-';
-            else if(i == 3)
-                hand_operators[i] = '/';
-            else
-                Debug.Log("ERROR! number of OPERATOR cards exceeds 4!");
-            hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operators[i]);
-        }
-
-        //reset battle_nums
-        battle_nums = new List<int>(new int[number_of_operands]);
-
-        //reset battle_ops
-        battle_ops = new List<char>(new char[number_of_operands - 1]);
+        //reset is_paused
+        is_paused = false;
     }
 
     public void Set_Operand_Upper_Bound(int new_int)
@@ -365,8 +348,4 @@ public class Player_Values : MonoBehaviour
     {
         is_paused = noow;     
     }
-
-    
-
-
 }

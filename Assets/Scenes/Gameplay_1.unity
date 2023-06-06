@@ -1020,8 +1020,9 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 888689609}
   pauseButton: {fileID: 2003822837}
   successScreenUI: {fileID: 752683327}
-  defeatScreenUI: {fileID: 0}
+  defeatScreenUI: {fileID: 665798194}
   difficultyUI: {fileID: 276627777}
+  eval_button_obj: {fileID: 644024127}
   pl: {fileID: 0}
 --- !u!114 &622302654
 MonoBehaviour:
@@ -1051,6 +1052,9 @@ MonoBehaviour:
   - {fileID: 81277780}
   - {fileID: 641156294}
   - {fileID: 1858538850}
+  battle_nums: 
+  battle_ops: 
+  is_equation_complete: 0
   pl: {fileID: 0}
   objective_obj: {fileID: 1076051753}
   eval_button_obj: {fileID: 644024127}
@@ -3937,7 +3941,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 622302653}
         m_TargetAssemblyTypeName: Pause_Menu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Retry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
