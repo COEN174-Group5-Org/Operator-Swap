@@ -8,15 +8,15 @@ public class Evaluate : MonoBehaviour
     [SerializeField] private GameObject successScreenUI;
     [SerializeField] private GameObject defeatScreenUI;
     [SerializeField] private GameObject eval_button_obj;
-    private Player_Values pv;
+    private Player_Values PlayerValuesOBJ;
 
     void Start()
     {
-        pv = GameObject.Find("Canvas").GetComponent<Player_Values>();
+        PlayerValuesOBJ = GameObject.Find("Canvas").GetComponent<Player_Values>();
     }
 
     public void evaluate(){
-        if(!pv.Get_Is_Equation_Complete())
+        if(!PlayerValuesOBJ.Get_Is_Equation_Complete())
             return;
         //grab objectiveToken from objective string script
         Objective_String ObjectiveStringOBJ = GameObject.Find("Canvas").GetComponent<Objective_String>();
@@ -24,8 +24,6 @@ public class Evaluate : MonoBehaviour
         objectiveToken = ObjectiveStringOBJ.objectiveToken;
 
         //battle ops/ battlenums
-
-        Player_Values PlayerValuesOBJ = GameObject.Find("Canvas").GetComponent<Player_Values>();
         List<int> nums = new List<int>(PlayerValuesOBJ.Get_Battle_Nums());
         List<char> ops = new List<char>(PlayerValuesOBJ.Get_Battle_Ops());
 
