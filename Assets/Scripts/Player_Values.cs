@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Stores all the variables and functions of the current player
 public class Player_Values : MonoBehaviour
@@ -13,7 +14,10 @@ public class Player_Values : MonoBehaviour
     private int num_operands_in_deck; 
 
     //current_turn stores the current turn of the scene
-    private int current_turn = 0; 
+    private int current_turn = 1; 
+
+    //current_level stores the current level the player is in
+    [SerializeField] private int current_level;
 
     //is_holding_card stores whether or not the player is holding a card
     private bool is_holding_card = false; 
@@ -74,6 +78,9 @@ public class Player_Values : MonoBehaviour
         pl = GameObject.Find("Canvas").GetComponent<Pause_Menu>();
         //objective_obj = GameObject.Find("objective_text");
         //eval_button_obj = GameObject.Find("EvalButton");
+
+        //initailize current_level
+        current_level = SceneManager.GetActiveScene().buildIndex;
     }
 
     public void Start_Level()
@@ -103,7 +110,6 @@ public class Player_Values : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Time.timeScale);
         if(is_paused)
             return;
 
@@ -154,6 +160,10 @@ public class Player_Values : MonoBehaviour
 
         //increment current turn
         current_turn++;
+
+        //if current_turn is greater than or equal to 4, move on to next level
+        if(current_turn >= 4)
+            SceneManager.LoadScene(current_level + 1);
 
         //tell hand slots to delete the cards they spawned
         for(int i = 0; i < number_of_operands; i++)

@@ -150,4 +150,9 @@ public class Pause_Menu : MonoBehaviour
         successScreenUI.SetActive(false);
         eval_button_obj.SetActive(true);
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
