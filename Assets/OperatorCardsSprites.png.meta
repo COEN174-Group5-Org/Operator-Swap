@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ff2e744f53fc3d45b143d7d21261995
-      internalID: 2017626960
+      spriteID: aa0c31423e956364da9a205e51aee7a2
+      internalID: 1033245173
       vertices: []
       indices: 
       edges: []
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00621c9285c703d42be74fc423273557
-      internalID: -1970526352
+      spriteID: b1529e599c0c6e34b9c0f56989e23574
+      internalID: -203769639
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02bb0ff85584b5a4c8aba5e5a3e58bf3
-      internalID: 110758115
+      spriteID: 97b0bef4c5918d044b5e875fce68fca4
+      internalID: -1473770959
       vertices: []
       indices: 
       edges: []
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e8075e2cefbc3e4d88b1df4387151fb
-      internalID: 1079429766
+      spriteID: dc6bd4544e69de4488bb68a3d79555f7
+      internalID: 2000731856
       vertices: []
       indices: 
       edges: []
@@ -211,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      OperatorCardsSprites_0: 2017626960
-      OperatorCardsSprites_3: 1079429766
-      OperatorCardsSprites_1: -1970526352
-      OperatorCardsSprites_2: 110758115
+      OperatorCardsSprites_0: 1033245173
+      OperatorCardsSprites_3: 2000731856
+      OperatorCardsSprites_1: -203769639
+      OperatorCardsSprites_2: -1473770959
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

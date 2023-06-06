@@ -14,7 +14,7 @@ public class Player_Values : MonoBehaviour
     private int num_operands_in_deck; 
 
     //current_turn stores the current turn of the scene
-    private int current_turn = 1; 
+    [SerializeField] private int current_turn = 1; 
 
     //current_level stores the current level the player is in
     [SerializeField] private int current_level;
