@@ -142,4 +142,12 @@ public class Pause_Menu : MonoBehaviour
         eval_button_obj.SetActive(true);
     }
 
+    public void Next_Turn()
+    {
+        pl.Next_Turn();
+        pauseButton.SetActive(true);
+        defeatScreenUI.SetActive(false);
+        successScreenUI.SetActive(false);
+        eval_button_obj.SetActive(true);
+    }
 }

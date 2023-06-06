@@ -103,6 +103,7 @@ public class Player_Values : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Time.timeScale);
         if(is_paused)
             return;
 
@@ -145,6 +146,12 @@ public class Player_Values : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        //reset is_holding_card
+        is_holding_card = false;
+
+        //reset is_paused
+        is_paused = false;
+
         //increment current turn
         current_turn++;
 
@@ -157,7 +164,7 @@ public class Player_Values : MonoBehaviour
         //generate next hand
         Generate_Hand_For_n_Operands();
 
-        
+        Start_Level();
     }
 
     //generate hand for level with number_of_operands operands
