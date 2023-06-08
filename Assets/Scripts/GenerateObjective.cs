@@ -57,7 +57,7 @@ public class GenerateObjective : MonoBehaviour
         nums.Sort();
         ops.Sort();
         var samples = new List<int>();
-        for (int i = 0; i < 100; ++i) samples.Add(Sample(3, nums, ops));
+        for (int i = 0; i < 100; ++i) samples.Add(Sample(nums.Count, nums, ops));
         samples = samples.Distinct().ToList();
         samples.Sort();
         var type = (objType)Random.Range(0, 2);
@@ -66,13 +66,15 @@ public class GenerateObjective : MonoBehaviour
         if (type == objType.GREATER)
         {
             target = samples[samples.Count * Random.Range(90, 100) / 100];
-            target = target * Random.Range(90, 101) / 100 - 1;
+            target *= target > 0 ? Random.Range(90, 101) : Random.Range(100, 111);
+            target = target / 100 - 1;
             objStr = "a number greater than " + target.ToString();
         }
         else
         {
             target = samples[samples.Count * Random.Range(0, 10) / 100];
-            target = target * Random.Range(100, 111) / 100 + 1;
+            target *= target > 0 ? Random.Range(100, 111) : Random.Range(90, 101);
+            target = target / 100 + 1;
             objStr = "a number less than " + target.ToString();
         }
         //Test code. If the objective cannot be verified, output debug info and alter return value.
