@@ -995,7 +995,7 @@ MonoBehaviour:
   battle_ops: 
   is_equation_complete: 0
   pl: {fileID: 0}
-  objective_obj: {fileID: 0}
+  objective_obj: {fileID: 957404363}
   eval_button_obj: {fileID: 644024127}
 --- !u!114 &622302655
 MonoBehaviour:
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nums: 
   ops: 
-  objectiveTextGameObj: {fileID: 0}
+  objectiveTextGameObj: {fileID: 957404363}
   objectiveObj: {fileID: 0}
   generateObjectiveOBJ: {fileID: 0}
 --- !u!114 &622302658
