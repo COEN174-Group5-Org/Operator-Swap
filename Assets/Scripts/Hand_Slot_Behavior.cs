@@ -8,21 +8,29 @@ public class Hand_Slot_Behavior : MonoBehaviour
     [SerializeField] private string slot_type;
     private Vector3 mouse_pos;
     [SerializeField] LayerMask mask;
-    //private bool is_slotted = true;
+    [SerializeField] private int slot_symbol;
 
     //GameObject vars
     [SerializeField] private GameObject card_prefab;
     [SerializeField] private GameObject canvas_obj;
     [SerializeField] private Player_Values player_vals;
+    private GameObject spawned_card;
 
-    void Awake()
+    void Start()
     {
         //setup
         canvas_obj = GameObject.Find("Canvas");
         player_vals = canvas_obj.GetComponent<Player_Values>();
+    }
 
+    public void Start_Hand()
+    {
         //create a card
-        Instantiate(card_prefab, transform.position, Quaternion.identity);
+        spawned_card = Instantiate(card_prefab, transform.position, Quaternion.identity);
+        if(slot_type == "operand")
+            spawned_card.GetComponent<Operand_Card_Behavior>().Set_My_Operand(slot_symbol);
+        else if(slot_type == "operator")
+            spawned_card.GetComponent<Operator_Card_Behavior>().Set_My_Operator((char) slot_symbol);
 
         //make sure this slot is not both an operand slot and an operator slot
         if(slot_type != "operand" && slot_type != "operator")
@@ -32,6 +40,9 @@ public class Hand_Slot_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player_vals.Get_Is_Paused())
+            return;
+            
         //setup mouse_pos
         mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -90,5 +101,18 @@ public class Hand_Slot_Behavior : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Set_Slot_Symbol(int symbol)
+    {
+        slot_symbol = symbol;
+    }
+
+    public void Destroy_Card()
+    {
+        if(spawned_card == null)
+            Debug.Log("ERROR! No card to destroy!");
+        else
+            Destroy(spawned_card);
     }
 }

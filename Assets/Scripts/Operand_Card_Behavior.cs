@@ -21,6 +21,9 @@ public class Operand_Card_Behavior : MonoBehaviour
     private Transform card_trans;
     private Transform collider_trans;
     private BoxCollider2D bc;
+    [SerializeField] private int my_operand = 1;
+    [SerializeField] private Sprite[] card_sprites;
+    [SerializeField] private SpriteRenderer card_spr; //NOTE: Do not remove [SerializeField] for this variable!
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +39,14 @@ public class Operand_Card_Behavior : MonoBehaviour
         card_trans = card_obj.transform;
         collider_trans = gameObject.GetComponent<Transform>();
         bc = gameObject.GetComponent<BoxCollider2D>();
-
-        //Set number on card here:
-        //...
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(player_vals.Get_Is_Paused())
+            return;
+            
         //setup step
         float step = move_speed * Time.deltaTime;
 
@@ -140,5 +143,17 @@ public class Operand_Card_Behavior : MonoBehaviour
     public bool Get_Can_Be_Clicked()
     {
         return can_be_clicked;
+    }
+
+    public void Set_My_Operand(int new_op)
+    {
+        my_operand = new_op;
+
+        card_spr.sprite = card_sprites[my_operand - 1];
+    }
+
+    public int Get_My_Operand()
+    {
+        return my_operand;
     }
 }
