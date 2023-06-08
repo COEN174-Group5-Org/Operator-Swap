@@ -1036,6 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66902c575dd36cd4bb3ea13df1fa75dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current_turn: 1
   current_level: 0
   number_of_operands: 3
   hand_operands: 

@@ -103,7 +103,7 @@ public class Pause_Menu : MonoBehaviour
     {
         difficultyUI.SetActive(false);
         pauseButton.SetActive(true);
-        pl.Set_Operand_Upper_Bound(9); //NOTE: Change this to 12 when more card sprites are added
+        pl.Set_Operand_Upper_Bound(12);
         pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
