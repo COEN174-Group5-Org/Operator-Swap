@@ -30,7 +30,7 @@ public class Battle_Slot_Behavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if(player_vals.Get_Is_Paused())
             return;
