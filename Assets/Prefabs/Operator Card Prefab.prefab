@@ -57,10 +57,10 @@ MonoBehaviour:
   player_vals: {fileID: 0}
   card_obj: {fileID: 0}
   card_sprites:
-  - {fileID: 2017626960, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
-  - {fileID: -1970526352, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
-  - {fileID: 110758115, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
-  - {fileID: 1079429766, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  - {fileID: 1033245173, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  - {fileID: -203769639, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  - {fileID: -1473770959, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
+  - {fileID: 2000731856, guid: eef0e9d450177774dadc83854c4fd4ab, type: 3}
   card_spr: {fileID: 2173319398689488922}
 --- !u!61 &2173319396906354325
 BoxCollider2D:
@@ -169,6 +169,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Stores all the variables and functions of the current player
 public class Player_Values : MonoBehaviour
@@ -13,7 +14,10 @@ public class Player_Values : MonoBehaviour
     private int num_operands_in_deck; 
 
     //current_turn stores the current turn of the scene
-    private int current_turn = 0; 
+    [SerializeField] private int current_turn = 1; 
+
+    //current_level stores the current level the player is in
+    [SerializeField] private int current_level;
 
     //is_holding_card stores whether or not the player is holding a card
     private bool is_holding_card = false; 
@@ -52,26 +56,37 @@ public class Player_Values : MonoBehaviour
 
     //battle_nums stores the operands in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    private List<int> battle_nums;
+    [SerializeField] private List<int> battle_nums;
 
     //battle_ops stores the operators in the battle equation in order from left to right
     //if NONE of the elements of battle_nums are 0 and NONE of the elements of battle_ops are 0 then, the battle equation can be evaluated
-    private List<char> battle_ops;
+    [SerializeField] private List<char> battle_ops;
 
     //is_equation_complete stores whether or not the battle equation can be evaluated
-    private bool is_equation_complete = false;
+    [SerializeField] private bool is_equation_complete = false;
 
     private bool is_paused = false; 
 
     public Pause_Menu pl;
 
+    [SerializeField] private GameObject objective_obj;
+
+    [SerializeField] private GameObject eval_button_obj;
+
     void Awake()
     {
         pl = GameObject.Find("Canvas").GetComponent<Pause_Menu>();
+        //objective_obj = GameObject.Find("objective_text");
+        //eval_button_obj = GameObject.Find("EvalButton");
+
+        //initailize current_level
+        current_level = SceneManager.GetActiveScene().buildIndex;
     }
 
     public void Start_Level()
     {
+        Time.timeScale = 1f;
+
         //Start each Hand slot
         for(int i = 0; i < hand_operand_objs.Count; i++)
         {
@@ -85,6 +100,10 @@ public class Player_Values : MonoBehaviour
         //generate and display correct objective
         GameObject generateObjectiveOBJ = GameObject.Find("Canvas");
         Objective_String oj = generateObjectiveOBJ.GetComponent<Objective_String>();
+
+        //display relevant gameplay UI elements
+        objective_obj.SetActive(true);
+        eval_button_obj.SetActive(true);
 
         oj.DisplayObjective();
     }
@@ -131,8 +150,20 @@ public class Player_Values : MonoBehaviour
     //Move to next turn with number_of_operands operands
     public void Next_Turn()
     {
+        Time.timeScale = 1f;
+
+        //reset is_holding_card
+        is_holding_card = false;
+
+        //reset is_paused
+        is_paused = false;
+
         //increment current turn
         current_turn++;
+
+        //if current_turn is greater than or equal to 4, move on to next level
+        if(current_turn >= 4)
+            SceneManager.LoadScene(current_level + 1);
 
         //tell hand slots to delete the cards they spawned
         for(int i = 0; i < number_of_operands; i++)
@@ -143,7 +174,7 @@ public class Player_Values : MonoBehaviour
         //generate next hand
         Generate_Hand_For_n_Operands();
 
-        
+        Start_Level();
     }
 
     //generate hand for level with number_of_operands operands
@@ -227,34 +258,13 @@ public class Player_Values : MonoBehaviour
 
     public void Generate_Hand_For_Retry()
     {
+        Time.timeScale = 1f;
+
         //reset is_holding_card
         is_holding_card = false;
 
-        for(int i = 0; i < number_of_operands; i++)
-        {
-            hand_operand_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operands[i]);
-        }
-
-        for(int i = 0; i < (number_of_operands - 1); i++)
-        {
-            if(i == 0)
-                hand_operators[i] = '+';
-            else if(i == 1)
-                hand_operators[i] = '*';
-            else if(i == 2)
-                hand_operators[i] = '-';
-            else if(i == 3)
-                hand_operators[i] = '/';
-            else
-                Debug.Log("ERROR! number of OPERATOR cards exceeds 4!");
-            hand_operator_objs[i].GetComponent<Hand_Slot_Behavior>().Set_Slot_Symbol(hand_operators[i]);
-        }
-
-        //reset battle_nums
-        battle_nums = new List<int>(new int[number_of_operands]);
-
-        //reset battle_ops
-        battle_ops = new List<char>(new char[number_of_operands - 1]);
+        //reset is_paused
+        is_paused = false;
     }
 
     public void Set_Operand_Upper_Bound(int new_int)
@@ -355,8 +365,4 @@ public class Player_Values : MonoBehaviour
     {
         is_paused = noow;     
     }
-
-    
-
-
 }

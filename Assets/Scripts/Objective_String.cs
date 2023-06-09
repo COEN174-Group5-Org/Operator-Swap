@@ -47,7 +47,7 @@ public class Objective_String : MonoBehaviour
         generateObjectiveOBJ = GameObject.Find("Canvas");
         GenerateObjective oj = generateObjectiveOBJ.GetComponent<GenerateObjective>();
 
-        objectiveTextGameObj = GameObject.Find("objective_text");
+        //objectiveTextGameObj = GameObject.Find("objective_text");
         objectiveObj = objectiveTextGameObj.GetComponent<TextMeshProUGUI>();
 
         //grab numbers and operands from player values (for now random)

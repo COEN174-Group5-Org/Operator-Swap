@@ -84,11 +84,13 @@ public class Battle_Slot_Behavior : MonoBehaviour
                             //Set card's rest position to this slot's position
                             operand_card_component.Set_Rest_Position(gameObject.transform.position);
 
-                            //Reset Card
-                            operand_card_component.Reset_Card();
+                            //gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
 
                             //update operand at my position in the equation
                             player_vals.Set_Battle_Nums(operand_card_component.Get_My_Operand(), my_equation_position);
+
+                            //Reset Card
+                            operand_card_component.Reset_Card();
                         }
                     }
                     //Debug.Log("Battle Slotted!");

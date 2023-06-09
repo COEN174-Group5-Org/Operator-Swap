@@ -58,15 +58,18 @@ MonoBehaviour:
   card_obj: {fileID: 0}
   my_operand: 1
   card_sprites:
-  - {fileID: 353913345, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -386564828, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 685100715, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 2074752830, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 874193870, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -1773173127, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -1711039928, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: 1860466198, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
-  - {fileID: -1502899844, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: -950632646, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: 2054363807, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: -115278025, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: 1654206273, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: -1966479732, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: 1312255271, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: 1509503248, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: -767691192, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: -547169375, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: 1146051780, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: 1962546934, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
+  - {fileID: -826416290, guid: b5744a3988915a8438b440a3011eebf1, type: 3}
   card_spr: {fileID: 2094500425884736901}
 --- !u!61 &2094500425444629258
 BoxCollider2D:
@@ -175,6 +178,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

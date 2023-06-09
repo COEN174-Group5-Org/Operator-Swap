@@ -77,6 +77,15 @@ public class Operand_Card_Behavior : MonoBehaviour
                 //set is_following to true
                 is_following = true;
 
+                //set is_holding in Player_Values script to true;
+                player_vals.Set_Is_Holding(true);
+
+                //set held card to this card
+                player_vals.Set_Held_Card(gameObject);
+
+                //set held_card_type to "operand"
+                player_vals.Set_Held_Card_Type("operand");
+
                 //Debug.Log("Pick up Card!");
             }
         }
@@ -89,26 +98,17 @@ public class Operand_Card_Behavior : MonoBehaviour
         if(is_touched == true && is_following == false && player_vals.Get_Is_Holding() == false)
         {
             //raise card
-            card_trans.position = Vector2.MoveTowards(card_trans.position, transform.position + new Vector3(0,raise_dist,0), step);;
+            card_trans.position = Vector2.MoveTowards(card_trans.position, transform.position + new Vector3(0,raise_dist,0), step);
         }
         else if(is_touched == false && is_following == false)
         {
             //move card to rest position
             card_trans.position = Vector2.MoveTowards(card_trans.position, rest_position, step);
         }
-        else
+        else if(is_following == true)
         {
             //follow mouse position
             collider_trans.position = new Vector3(mouse_pos.x, mouse_pos.y, 0);
-
-            //set is_holding in Player_Values script to true;
-            player_vals.Set_Is_Holding(true);
-
-            //set held card to this card
-            player_vals.Set_Held_Card(gameObject);
-
-            //set held_card_type to "operand"
-            player_vals.Set_Held_Card_Type("operand");
 
             //if right mouse button was pressed,
             if(Input.GetMouseButtonDown(1))
@@ -124,7 +124,9 @@ public class Operand_Card_Behavior : MonoBehaviour
         is_following = false; 
 
         //reset position
-        collider_trans.position = rest_position;
+        collider_trans.position = Vector2.MoveTowards(collider_trans.position, rest_position, 10000f);
+
+        //gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
 
         //set is_holding in Player_Values script to false;
         player_vals.Set_Is_Holding(false);

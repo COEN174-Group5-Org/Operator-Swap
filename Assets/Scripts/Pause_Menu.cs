@@ -18,6 +18,7 @@ public class Pause_Menu : MonoBehaviour
     public GameObject successScreenUI;
     public GameObject defeatScreenUI;
     public GameObject difficultyUI;
+    [SerializeField] private GameObject eval_button_obj;
 
     public Player_Values pl;
 
@@ -102,7 +103,7 @@ public class Pause_Menu : MonoBehaviour
     {
         difficultyUI.SetActive(false);
         pauseButton.SetActive(true);
-        pl.Set_Operand_Upper_Bound(9); //NOTE: Change this to 12 when more card sprites are added
+        pl.Set_Operand_Upper_Bound(12);
         pl.Generate_Hand_For_n_Operands();
         Time.timeScale = 1f;
         pl.Set_Is_Paused(false);
@@ -133,4 +134,25 @@ public class Pause_Menu : MonoBehaviour
         defeatScreenUI.SetActive(true);
     }
 
+    public void Retry()
+    {
+        pl.Generate_Hand_For_Retry();
+        pauseButton.SetActive(true);
+        defeatScreenUI.SetActive(false);
+        eval_button_obj.SetActive(true);
+    }
+
+    public void Next_Turn()
+    {
+        pl.Next_Turn();
+        pauseButton.SetActive(true);
+        defeatScreenUI.SetActive(false);
+        successScreenUI.SetActive(false);
+        eval_button_obj.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
