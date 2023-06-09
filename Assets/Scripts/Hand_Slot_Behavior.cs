@@ -80,6 +80,8 @@ public class Hand_Slot_Behavior : MonoBehaviour
 
                             //Reset Card
                             operator_card_component.Reset_Card();
+
+                            StartCoroutine(Late_Operator_Reset());
                         }
                     }
                     else if(slot_type == "operand")
@@ -94,6 +96,8 @@ public class Hand_Slot_Behavior : MonoBehaviour
 
                             //Reset Card
                             operand_card_component.Reset_Card();
+
+                            StartCoroutine(Late_Operand_Reset());
                         }
                     }
 
@@ -114,5 +118,33 @@ public class Hand_Slot_Behavior : MonoBehaviour
             Debug.Log("ERROR! No card to destroy!");
         else
             Destroy(spawned_card);
+    }
+
+    IEnumerator Late_Operator_Reset()
+    {
+        //get held card
+        GameObject card = player_vals.Get_Held_Card();
+
+        //get held card's "Operator_Card_Behavior" Component
+        Operator_Card_Behavior operator_card_component = card.GetComponent<Operator_Card_Behavior>();
+        
+        yield return new WaitForSeconds(0.1f);
+        
+        //Reset Card
+        operator_card_component.Reset_Card();
+    }
+
+    IEnumerator Late_Operand_Reset()
+    {
+        //get held card
+        GameObject card = player_vals.Get_Held_Card();
+
+        //get held card's "Operand_Card_Behavior" Component
+        Operand_Card_Behavior operand_card_component = card.GetComponent<Operand_Card_Behavior>();
+
+        yield return new WaitForSeconds(0.1f);
+        
+        //Reset Card
+        operand_card_component.Reset_Card();
     }
 }
