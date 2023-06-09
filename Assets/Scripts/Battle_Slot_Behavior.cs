@@ -30,7 +30,7 @@ public class Battle_Slot_Behavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if(player_vals.Get_Is_Paused())
             return;
@@ -67,11 +67,11 @@ public class Battle_Slot_Behavior : MonoBehaviour
                             //Set card's rest position to this slot's position
                             operator_card_component.Set_Rest_Position(gameObject.transform.position);
 
-                            //Reset Card
-                            operator_card_component.Reset_Card();
-
                             //update operator at my position in the equation
                             player_vals.Set_Battle_Ops(operator_card_component.Get_My_Operator(), my_equation_position);
+
+                            //Reset Card
+                            operator_card_component.Reset_Card();
                         }
                     }
                     else if(slot_type == "operand")
@@ -124,4 +124,9 @@ public class Battle_Slot_Behavior : MonoBehaviour
     {
         my_equation_position = new_pos;
     }
+
+    // IEnumerator Late_Reset()
+    // {
+
+    // }
 }
