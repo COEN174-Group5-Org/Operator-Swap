@@ -41,7 +41,8 @@ public class Pause_Menu : MonoBehaviour
 
     void Start(){
         pl = GameObject.Find("Canvas").GetComponent<Player_Values>();
-        loadDifficultyUI();
+        if(SceneManager.GetActiveScene().buildIndex != 4)
+            loadDifficultyUI();
     }
 
     public void Resume()
